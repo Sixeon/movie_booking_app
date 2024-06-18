@@ -1,5 +1,5 @@
-import 'package:dont_book_my_show/screens/homescreen.dart';
-import 'package:dont_book_my_show/screens/movie_info_description.dart';
+import 'package:dont_book_my_show/homescreen.dart';
+import 'package:dont_book_my_show/movie_info_description.dart';
 import 'package:flutter/material.dart';
 
 void main() {

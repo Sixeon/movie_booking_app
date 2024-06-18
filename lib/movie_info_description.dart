@@ -1,4 +1,4 @@
-import 'package:dont_book_my_show/screens/homescreen.dart';
+import 'package:dont_book_my_show/homescreen.dart';
 import 'package:flutter/material.dart';
 
 class MovieInfoDescription extends StatefulWidget {
@@ -81,6 +81,7 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                             widget.movieData['rating'].toString(),
                             style: TextStyle(
                               color: Colors.black,
+                              fontFamily: 'cursive',
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -108,8 +109,9 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                     SizedBox(height: 16),
                     //Description for future implementation
                     Text(
-                      'Batman ventures into Gotham City\'s underworld when a sadistic killer leaves behind a trail of cryptic clues. As the evidence begins to lead closer to home and the scale of the perpetrator\'s plans become clear, he must forge new relationships, unmask the culprit and bring justice to the abuse of power and corruption that has long plagued the metropolis.',
+                      widget.movieData['description'].toString(),
                       style: TextStyle(
+                        fontFamily: 'valera',
                         color: Colors.white,
                       ),
                     ),
@@ -118,12 +120,12 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
               ),
             ),
             Positioned(
-              bottom: 0,
+              bottom: -10,
               left: 0,
               right: 0,
               child: Container(
                 height: 60,
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.all(20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

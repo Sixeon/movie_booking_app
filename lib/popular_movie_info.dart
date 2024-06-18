@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:dont_book_my_show/screens/homescreen.dart';
+import 'package:dont_book_my_show/homescreen.dart';
 
 class PopularMovieInfo extends StatefulWidget {
   const PopularMovieInfo({super.key});
