@@ -1,8 +1,11 @@
+import 'package:dont_book_my_show/book_now.dart';
 import 'package:dont_book_my_show/homescreen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MovieInfoDescription extends StatefulWidget {
   Map movieData;
+
   MovieInfoDescription({super.key, required this.movieData});
 
   @override
@@ -14,18 +17,16 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        iconTheme: IconThemeData(
-          color: Colors.white
-        ),
+        //  leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        // ),
+        iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.upload),
+            icon: const Icon(Icons.share),
             onPressed: () {},
           ),
         ],
@@ -36,7 +37,7 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
         child: Stack(
           children: [
             Image.asset(
-              widget.movieData['imageUrl'].toString(),
+              widget.movieData['Poster'].toString(),
               fit: BoxFit.cover,
               height: double.infinity,
               width: double.infinity,
@@ -46,7 +47,7 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
               left: 0,
               right: 0,
               child: Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -62,14 +63,8 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                   children: [
                     Row(
                       children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
-
-                        SizedBox(width: 20),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             horizontal: 15,
                             vertical: 7,
                           ),
@@ -79,38 +74,65 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                           ),
                           child: Text(
                             widget.movieData['rating'].toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
-                              fontFamily: 'cursive',
+                              //fontFamily: 'cursive',
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
-                      widget.movieData['specs'].toString(),
-                      style: TextStyle(
+                      widget.movieData['Runtime'].toString(),
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
-                    SizedBox(height: 16),
-                    Text(
-                      widget.movieData['title'].toString(),
-                      style: TextStyle(
-                        color: Colors.amber,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Text(
+                          widget.movieData['Title'].toString(),
+                          style: const TextStyle(
+                            color: Colors.amber,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Spacer(),
+                        ElevatedButton(
+                          onPressed: () {
+                           // showDialog(
+                             //   context: context,
+                               // builder: (BuildContext context) {
+                                 // return DialogBox();
+                               // });
+Get.to(ChooseSeatsPage());
+                            // Navigator.push(
+                            //   context,
+                            // MaterialPageRoute(
+                            //builder: (context) => SeatSelect(title: widget.movieData['title'].toString())),
+                            //);
+                          },
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.amber)),
+                          child: Text(
+                            'BOOK NOW',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
                     ),
-                    SizedBox(height: 16),
-                    //Description for future implementation
+                    const SizedBox(height: 13),
                     Text(
                       widget.movieData['description'].toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'valera',
                         color: Colors.white,
                       ),
@@ -119,61 +141,60 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                 ),
               ),
             ),
-            Positioned(
-              bottom: -10,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 60,
-                padding: EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.home,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {},
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.favorite,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.bookmark,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {},
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.person,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                      },
-                    ),
-                  ],
-                ),
-
-              ),
-            ),
-            Center(
+            // Positioned(
+            //   bottom: -10,
+            //   left: 0,
+            //   right: 0,
+            //   child: Container(
+            //     height: 60,
+            //     padding: const EdgeInsets.all(20),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //       children: [
+            //         IconButton(
+            //           icon: const Icon(
+            //             Icons.home,
+            //             color: Colors.white,
+            //           ),
+            //           onPressed: () {
+            //             Get.to(() => HomePage());
+            //           },
+            //         ),
+            //         IconButton(
+            //           icon: const Icon(
+            //             Icons.favorite,
+            //             color: Colors.white,
+            //           ),
+            //           onPressed: () {
+            //             Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                   builder: (context) => const HomePage()),
+            //             );
+            //           },
+            //         ),
+            //         IconButton(
+            //           icon: const Icon(
+            //             Icons.bookmark,
+            //             color: Colors.white,
+            //           ),
+            //           onPressed: () {},
+            //         ),
+            //         IconButton(
+            //           icon: const Icon(
+            //             Icons.person,
+            //             color: Colors.white,
+            //           ),
+            //           onPressed: () {},
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            const Center(
               child: Icon(
                 Icons.play_circle_outline,
-                size: 100,
+                size: 70,
                 color: Colors.white,
               ),
             ),
@@ -182,5 +203,49 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
       ),
     );
   }
-}
 
+  Widget DialogBox() {
+    return AlertDialog(
+      title: const Text(
+        'Sign in',
+        textAlign: TextAlign.center,
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const Text('Please sign in to continue'),
+          const SizedBox(height: 16),
+          TextField(
+            decoration: const InputDecoration(
+              hintText: 'Email address',
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            obscureText: true,
+            decoration: const InputDecoration(
+              hintText: 'Password',
+            ),
+          ),
+          const SizedBox(height: 24),
+          ElevatedButton(
+            onPressed: () {
+              Get.to(() => (HomePage1()));
+            },
+            child: const Text('Sign in'),
+          ),
+          const SizedBox(height: 16),
+          const Text('or'),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              // Handle Google sign in
+            },
+            child: const Text('Google'),
+          ),
+        ],
+      ),
+      actions: <Widget>[],
+    );
+  }
+}
