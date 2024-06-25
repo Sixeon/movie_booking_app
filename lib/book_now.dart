@@ -99,7 +99,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                           });
                         },
                       ),
-                      Text('Screen 2,', style: TextStyle(color: Colors.white)),
+                      Text('Screen 2', style: TextStyle(color: Colors.white)),
                       Radio(
                         value: 'Screen 2',
                         groupValue: selectedScreen,

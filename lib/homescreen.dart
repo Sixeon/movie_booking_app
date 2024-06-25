@@ -153,20 +153,20 @@ class _HomePageState extends State<HomePage1> {
                           'Hello Anurag!',
                           style: TextStyle(
                               color: Color.fromARGB(255, 255, 50, 50),
-                              fontSize: 22),
+                              fontSize: 25),
                         ),
                         Text(
                           'Welcome to Xlayer Movies.',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 12),
+                              fontSize: 15),
                         ),
                         Text(
                           "Book your show, Now!!",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 12,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold),
                         )
                       ],
@@ -241,15 +241,15 @@ class _HomePageState extends State<HomePage1> {
                   },
                   child: const Text(
                     'Most Watched Movies',
-                    style: TextStyle(
+                    style: TextStyle(fontSize: 15,
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Divider(
-                  height: 20,
-                  color: Colors.white,
-                  thickness: 0.5,
-                ),
+                // Divider(
+                //   height: 20,
+                //   color: Colors.white,
+                //   thickness: 0.5,
+                // ),
                 Card(
                   elevation: 3,
                   child: Stack(
@@ -303,7 +303,7 @@ class _HomePageState extends State<HomePage1> {
                   children: [
                     const Text(
                       'Popular Movies',
-                      style: TextStyle(
+                      style: TextStyle(fontSize: 15,
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     const Spacer(),
@@ -318,7 +318,7 @@ class _HomePageState extends State<HomePage1> {
                         },
                         child: const Text(
                           'See More >',
-                          style: TextStyle(
+                          style: TextStyle(fontSize: 15,
                               color: Color.fromARGB(255, 255, 50, 50)),
                         ))
                   ],
@@ -340,7 +340,7 @@ class _HomePageState extends State<HomePage1> {
                     children: [
                       const Text(
                         'Now Showing',
-                        style: TextStyle(
+                        style: TextStyle(fontSize: 15,
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       const Spacer(),
@@ -350,7 +350,7 @@ class _HomePageState extends State<HomePage1> {
                           },
                           child: const Text(
                             'See More >',
-                            style: TextStyle(color: Colors.red),
+                            style: TextStyle(fontSize:15,color:  Colors.red),
                           ))
                     ],
                   ),
@@ -472,6 +472,7 @@ class _HomePageState extends State<HomePage1> {
                 Text(
                   title,textAlign: TextAlign.left,
                   style: const TextStyle(
+                    fontSize: 15,
                     color: Colors.amber,
                     fontWeight: FontWeight.bold,
 
