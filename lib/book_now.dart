@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +25,7 @@ class ChooseSeatsPage extends StatefulWidget {
 
 class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
   // Seat selection logic
-  List<bool> selectedSeats = List.filled(20, false); // 20 seats for example
+  List<bool> selectedSeats = List<bool>.filled(60, false);
   int totalSelectedSeats = 0;
 
   // Date and time selection logic
@@ -238,8 +239,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      selectedSeats[index + 20] =
-                                      !selectedSeats[index + 20];
+                                      selectedSeats[index + 30] =
+                                      !selectedSeats[index + 30];
                                       totalSelectedSeats = selectedSeats
                                           .where((element) => element)
                                           .length;
@@ -249,7 +250,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: selectedSeats[index + 20]
+                                      color: selectedSeats[index + 30]
                                           ? Colors.red
                                           : Colors.grey[300],
                                       border: Border.all(
@@ -276,8 +277,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      selectedSeats[index + 20] =
-                                      !selectedSeats[index + 20];
+                                      selectedSeats[index + 34] =
+                                      !selectedSeats[index + 34];
                                       totalSelectedSeats = selectedSeats
                                           .where((element) => element)
                                           .length;
@@ -287,7 +288,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: selectedSeats[index + 20]
+                                      color: selectedSeats[index + 34]
                                           ? Colors.red
                                           : Colors.grey[300],
                                       border: Border.all(
@@ -315,8 +316,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      selectedSeats[index + 20] =
-                                      !selectedSeats[index + 20];
+                                      selectedSeats[index + 38] =
+                                      !selectedSeats[index + 38];
                                       totalSelectedSeats = selectedSeats
                                           .where((element) => element)
                                           .length;
@@ -326,7 +327,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: selectedSeats[index + 20]
+                                      color: selectedSeats[index + 38]
                                           ? Colors.red
                                           : Colors.grey[300],
                                       border: Border.all(
@@ -353,8 +354,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      selectedSeats[index + 20] =
-                                      !selectedSeats[index + 20];
+                                      selectedSeats[index + 42] =
+                                      !selectedSeats[index + 42];
                                       totalSelectedSeats = selectedSeats
                                           .where((element) => element)
                                           .length;
@@ -364,7 +365,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: selectedSeats[index + 20]
+                                      color: selectedSeats[index + 42]
                                           ? Colors.red
                                           : Colors.grey[300],
                                       border: Border.all(
@@ -391,8 +392,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      selectedSeats[index + 20] =
-                                      !selectedSeats[index + 20];
+                                      selectedSeats[index + 46] =
+                                      !selectedSeats[index + 46];
                                       totalSelectedSeats = selectedSeats
                                           .where((element) => element)
                                           .length;
@@ -402,7 +403,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: selectedSeats[index + 20]
+                                      color: selectedSeats[index + 46]
                                           ? Colors.red
                                           : Colors.grey[300],
                                       border: Border.all(
@@ -430,8 +431,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      selectedSeats[index + 20] =
-                                      !selectedSeats[index + 20];
+                                      selectedSeats[index + 50] =
+                                      !selectedSeats[index + 50];
                                       totalSelectedSeats = selectedSeats
                                           .where((element) => element)
                                           .length;
@@ -441,7 +442,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: selectedSeats[index + 20]
+                                      color: selectedSeats[index + 50]
                                           ? Colors.red
                                           : Colors.grey[300],
                                       border: Border.all(
@@ -468,8 +469,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      selectedSeats[index + 20] =
-                                      !selectedSeats[index + 20];
+                                      selectedSeats[index + 54] =
+                                      !selectedSeats[index + 54];
                                       totalSelectedSeats = selectedSeats
                                           .where((element) => element)
                                           .length;
@@ -479,7 +480,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: selectedSeats[index + 20]
+                                      color: selectedSeats[index + 54]
                                           ? Colors.red
                                           : Colors.grey[300],
                                       border: Border.all(
@@ -740,10 +741,12 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       // Time Selector
                       Expanded(
                         child: DropdownButton(
+                          dropdownColor: Colors.grey,
                           value: selectedTime,
                           items: timeList.map((time) {
                             return DropdownMenuItem(
                               value: time,
+
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -774,7 +777,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Total: \$${totalPrice.toStringAsFixed(2)}',
+                'Total: \₹${totalPrice.toStringAsFixed(2)}',
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -788,7 +791,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                 onPressed: totalSelectedSeats > 0
                     ? () {
                         setState(() {
-                          totalPrice = totalSelectedSeats * 10.0;
+                          totalPrice = totalSelectedSeats * 100.0;
                           // Add your booking logic here
                           print('Booking confirmed!');
                           print(
@@ -798,7 +801,15 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                           print('Time: $selectedTime');
                           print('Screen: $selectedScreen');
                         });
-                      }
+                        Fluttertoast.showToast(
+                          msg: "Booking confirmed",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          backgroundColor: Colors.black,
+                          fontSize: 15,
+                          textColor: Colors.white,
+
+                        ); }
                     : null,
                 child: Text('Book Now'),
               ),

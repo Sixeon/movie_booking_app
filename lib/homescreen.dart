@@ -16,6 +16,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage1 extends StatefulWidget {
    HomePage1({super.key});
@@ -116,6 +117,13 @@ class _HomePageState extends State<HomePage1> {
       "yt_link": '',
     },
   ];
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +133,7 @@ class _HomePageState extends State<HomePage1> {
         );
     if (_context == null) {
       _context = context;
-      getMovies();
+      //getMovies();
     }
     return SafeArea(
       child: Scaffold(
@@ -228,8 +236,8 @@ class _HomePageState extends State<HomePage1> {
                 InkWell(
 
                   onDoubleTap:(){
-                    getMovies();
-                    getSpots();
+                    //getMovies();
+                    //getSpots();
                   },
                   child: const Text(
                     'Most Watched Movies',
@@ -275,7 +283,7 @@ class _HomePageState extends State<HomePage1> {
                                       Icons.play_arrow,
                                       color: Colors.white,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {_launchURL('https://youtu.be/mqqft2x_Aa4?si=4coH-DdPYQ0MayGY');},
                                     label: const Text(
                                       textAlign: TextAlign.center,
                                       'Watch Now',
@@ -302,11 +310,11 @@ class _HomePageState extends State<HomePage1> {
                     TextButton(
                         onPressed: () {
                           Get.to(allMovies());
-                          // Get.to(() => allMovies());
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => allMovies()),
-                          // );
+                          Get.to(() => allMovies());
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => allMovies()),
+                          );
                         },
                         child: const Text(
                           'See More >',
@@ -338,7 +346,7 @@ class _HomePageState extends State<HomePage1> {
                       const Spacer(),
                       TextButton(
                           onPressed: () {
-                            Get.to(ticket());
+                            Get.to(allMovies());
                           },
                           child: const Text(
                             'See More >',
@@ -400,7 +408,7 @@ class _HomePageState extends State<HomePage1> {
                       backgroundColor: Colors.white,
                       fontSize: 25,
                       textColor: Colors.black,
-                      webBgColor: "linear-gradient(to right, #, #dc1c13)",
+
                     );
                   },
                   icon: const Icon(Icons.bookmarks,
@@ -423,9 +431,9 @@ class _HomePageState extends State<HomePage1> {
 
   Widget movieCard(
       {required var data,
-        required String filename,
+        required String title,
         required String rating,
-        required String link,
+        required String imageUrl,
         required String specs,
         required String description}) {
     return Padding(
@@ -445,8 +453,8 @@ class _HomePageState extends State<HomePage1> {
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     child:
                     //link.isEmpty // ? Image.asset('assets/avengers.jpeg')
-                         Image.network(
-                      link,
+                         Image.asset(
+                      imageUrl,
                       fit: BoxFit.fill,
                     ),
                   )),
@@ -459,13 +467,10 @@ class _HomePageState extends State<HomePage1> {
                 const SizedBox(
                 width: 60,
                 ),
-                 const Icon(
-                   Icons.star,
-                   color: Colors.amber,
-                   size: 12,
-                 ),
+
+
                 Text(
-                  filename,textAlign: TextAlign.start,
+                  title,textAlign: TextAlign.left,
                   style: const TextStyle(
                     color: Colors.amber,
                     fontWeight: FontWeight.bold,
@@ -491,9 +496,9 @@ class _HomePageState extends State<HomePage1> {
         },
         child: movieCard(
           data: v,
-          filename: v['Title'].toString(),
+          title: v['title'].toString(),
           rating: v['rating'].toString(),
-          link: (v['link'] != null) ? v['link'].toString() : '',
+          imageUrl: (v['imageUrl'] != null) ? v['imageUrl'].toString() : '',
           specs: v['Runtime'].toString(),
           description: v['description'].toString(),
         ),
@@ -513,9 +518,9 @@ class _HomePageState extends State<HomePage1> {
         },
         child: movieCard(
           data: v,
-          filename: v['title'].toString(),
+          title: v['title'].toString(),
           rating: v['rating'].toString(),
-          link: (v['link'] != null) ? v['link'].toString() : '',
+          imageUrl: (v['imageUrl'] != null) ? v['imageUrl'].toString() : '',
           specs: (v['specs'] != null) ? v['specs'].toString() : '',
           description: v['description'].toString(),
         ),
@@ -524,112 +529,113 @@ class _HomePageState extends State<HomePage1> {
     return movies;
   }
 
-  getSpots() async {
-    String url = 'http://10.10.10.114/web/spots/images';
-    Dio dio = Dio();
-    try {
-      var response = await dio.get(url);
-      Map map = response.data;
-      log('[i] movies count ${map['result'].length}');
-      for(var book in map['result']){
-        log("[i] book $book");
-      }
-      // listOfMovies = map['movies'];
-      // print(listOfMovies[0]);
-      // print(listOfMovies[2]);
-      // setState(() {
-      // });
-      // if(map['status']){
-      //   print("Movies data $map");
-      // }
-    } catch (e) {
-      log('[e] error $e');
-    }
-  }
-  getMovies() async {
-    String url = 'http://10.10.10.114/web/spots';
-    Dio dio = Dio();
-    try {
-      var response = await dio.get(url);
-      Map map = jsonDecode(response.data);
-      log('[i] movies count ${map['result'].length}');
-      for(var book in map['result']){
-        log("[i] book $book");
-      }
-      // listOfMovies = map['movies'];
-      // print(listOfMovies[0]);
-      // print(listOfMovies[2]);
-      // setState(() {
-      // });
-      // if(map['status']){
-      //   print("Movies data $map");
-      // }
-    } catch (e) {
-      log('[e] error $e');
-    }
-  }
-}
-class SearchBarApp extends StatefulWidget {
-  const SearchBarApp({super.key});
-
-  @override
-  State<SearchBarApp> createState() => _SearchBarAppState();
-}
-
-class _SearchBarAppState extends State<SearchBarApp> {
-  bool isDark = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = ThemeData(
-        useMaterial3: true,
-        brightness: isDark ? Brightness.dark : Brightness.light);
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SearchAnchor(
-          builder: (BuildContext context, SearchController controller) {
-            return SearchBar(
-              controller: controller,
-              padding: const WidgetStatePropertyAll<EdgeInsets>(
-                  EdgeInsets.symmetric(horizontal: 16.0)),
-              onTap: () {
-                controller.openView();
-              },
-              onChanged: (_) {
-                controller.openView();
-              },
-              leading: const Icon(Icons.search),
-              trailing: <Widget>[
-                Tooltip(
-                  message: 'Change brightness mode',
-                  child: IconButton(
-                    isSelected: isDark,
-                    onPressed: () {
-                      setState(() {
-                        isDark = !isDark;
-                      });
-                    },
-                    icon: const Icon(Icons.wb_sunny_outlined),
-                    selectedIcon: const Icon(Icons.brightness_2_outlined),
-                  ),
-                )
-              ],
-            );
-          }, suggestionsBuilder:
-          (BuildContext context, SearchController controller) {
-        return List<ListTile>.generate(5, (int index) {
-          final String item = 'item $index';
-          return ListTile(
-            title: Text(item),
-            onTap: () {
-              setState(() {
-                controller.closeView(item);
-              });
-            },
-          );
-        });
-      }),
-    );
-  }
+  //getSpots() async {
+//     String url = 'http://10.10.10.114/web/spots/images';
+//     Dio dio = Dio();
+//     try {
+//       var response = await dio.get(url);
+//       Map map = response.data;
+//       log('[i] movies count ${map['result'].length}');
+//       for(var book in map['result']){
+//         log("[i] book $book");
+//       }
+//       // listOfMovies = map['movies'];
+//       // print(listOfMovies[0]);
+//       // print(listOfMovies[2]);
+//       // setState(() {
+//       // });
+//       // if(map['status']){
+//       //   print("Movies data $map");
+//       // }
+//     } catch (e) {
+//       log('[e] error $e');
+//     }
+//   }
+//   getMovies() async {
+//     String url = 'http://10.10.10.114/web/spots';
+//     Dio dio = Dio();
+//     try {
+//       var response = await dio.get(url);
+//       Map map = jsonDecode(response.data);
+//       log('[i] movies count ${map['result'].length}');
+//       for(var book in map['result']){
+//         log("[i] book $book");
+//       }
+//       // listOfMovies = map['movies'];
+//       // print(listOfMovies[0]);
+//       // print(listOfMovies[2]);
+//       // setState(() {
+//       // });
+//       // if(map['status']){
+//       //   print("Movies data $map");
+//       // }
+//     } catch (e) {
+//       log('[e] error $e');
+//     }
+//   }
+// }
+// class SearchBarApp extends StatefulWidget {
+//   const SearchBarApp({super.key});
+//
+//   @override
+//   State<SearchBarApp> createState() => _SearchBarAppState();
+// }
+//
+// class _SearchBarAppState extends State<SearchBarApp> {
+//   bool isDark = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final ThemeData themeData = ThemeData(
+//         useMaterial3: true,
+//         brightness: isDark ? Brightness.dark : Brightness.light);
+//
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: SearchAnchor(
+//           builder: (BuildContext context, SearchController controller) {
+//             return SearchBar(
+//               controller: controller,
+//               padding: const WidgetStatePropertyAll<EdgeInsets>(
+//                   EdgeInsets.symmetric(horizontal: 16.0)),
+//               onTap: () {
+//                 controller.openView();
+//               },
+//               onChanged: (_) {
+//                 controller.openView();
+//               },
+//               leading: const Icon(Icons.search),
+//               trailing: <Widget>[
+//                 Tooltip(
+//                   message: 'Change brightness mode',
+//                   child: IconButton(
+//                     isSelected: isDark,
+//                     onPressed: () {
+//                       setState(() {
+//                         isDark = !isDark;
+//                       });
+//                     },
+//                     icon: const Icon(Icons.wb_sunny_outlined),
+//                     selectedIcon: const Icon(Icons.brightness_2_outlined),
+//                   ),
+//                 )
+//               ],
+//             );
+//           }, suggestionsBuilder:
+//           (BuildContext context, SearchController controller) {
+//         return List<ListTile>.generate(5, (int index) {
+//           final String item = 'item $index';
+//           return ListTile(
+//             title: Text(item),
+//             onTap: () {
+//               setState(() {
+//                 controller.closeView(item);
+//               });
+//             },
+//           );
+//         });
+//       }),
+//     );
+//   }
+//
 }

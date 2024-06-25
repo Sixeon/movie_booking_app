@@ -93,6 +93,7 @@ class allMovies extends StatelessWidget {
       'Los Angeles police officer Brian O Conner must decide where his loyalty really lies '
           'when he becomes enamored with the street racing world he has been sent undercover to end it.',
     },
+
   ];
   @override
   Widget build(BuildContext context) {

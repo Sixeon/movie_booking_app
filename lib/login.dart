@@ -129,9 +129,9 @@ class _loginscreenState extends State<loginscreen> {
                         MaterialStateProperty.all<Color>(Colors.blue),
                   ),
                   onPressed: () {
-Get.to(HomePage1());
-                     // signIn(passwordController.text.trim(),
-                     //    library_idController.text.trim());
+
+                      signIn(passwordController.text.trim(),
+                       library_idController.text.trim());
                   },
                   child: const Text('Sign in',
                       style: TextStyle(

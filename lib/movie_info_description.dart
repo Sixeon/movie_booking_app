@@ -37,7 +37,7 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
         child: Stack(
           children: [
             Image.asset(
-              widget.movieData['Poster'].toString(),
+              widget.movieData['imageUrl'].toString(),
               fit: BoxFit.cover,
               height: double.infinity,
               width: double.infinity,
@@ -85,7 +85,7 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      widget.movieData['Runtime'].toString(),
+                      widget.movieData['specs'].toString(),
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                     Row(
                       children: [
                         Text(
-                          widget.movieData['Title'].toString(),
+                          widget.movieData['title'].toString(),
                           style: const TextStyle(
                             color: Colors.amber,
                             fontSize: 24,

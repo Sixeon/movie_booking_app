@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ticket extends StatefulWidget {
   const ticket({super.key});
@@ -27,11 +28,21 @@ class _ticketState extends State<ticket> {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Column(
-                    children: [Text('data'), Text('data')],
+                    children: [Text('The BATMAN',textAlign:TextAlign.left,style:  TextStyle(fontSize: 20),), Text('data')],
                   ),
                 ),
-                SizedBox(height: 100,),
-                Divider(thickness: 0.5,),
+                SizedBox(height: 70,),
+                Divider(thickness: 1,),
+                
+                Align(alignment: Alignment.topCenter,
+                  child: Row(children: [Icon(Icons.location_pin,size: 30,),
+                    Text("Rupasi Cinema hall",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)],) ,
+                ),
+                Align(alignment:Alignment.topCenter,
+                child: Row(children: [Text("Agartala,Tripura")],),),
+                
+                SizedBox(height: 50,),
+                Divider(thickness: 1,)
 
               ],
 

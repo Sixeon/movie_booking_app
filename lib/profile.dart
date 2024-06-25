@@ -19,114 +19,117 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
+      child: Scaffold(
+        appBar: AppBar(title: Text('Profile',style: TextStyle(color: Colors.white),),
           backgroundColor: Colors.black,
-          iconTheme: const IconThemeData(color: Colors.white)),
-      body: Padding(
-          padding: const EdgeInsets.all(20),
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: Padding(
+          padding:  EdgeInsets.all(20),
           child: ListView(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 30,
-              ),
-              const Align(
+              const SizedBox(height: 30),
+              Align(
                 alignment: Alignment.topCenter,
-                child: CircleAvatar(
-                  radius: 80,
-                  backgroundColor: Colors.orange,
+                child: InteractiveViewer(
+                  boundaryMargin: EdgeInsets.all(20.0),
+                  minScale: 0.5,
+                  maxScale: 3.0,
                   child: CircleAvatar(
+                    radius: 80,
+                    backgroundColor: Colors.orange,
+                    child: CircleAvatar(
                       radius: 75,
-                      backgroundImage: AssetImage('assets/batman.jpeg')),
+                      backgroundImage: AssetImage('assets/batman.jpeg'),
+                    ),
+                  ),
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 20),
               Center(
-                  child: Text(
-                'Anurag',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              )),
-              Center(
-                  child: Text('anuragc@gmail.com',
-                      style: TextStyle(
-                        color: Color.fromARGB(100, 250, 250, 250),
-                      ))),
-              const SizedBox(
-                height: 50,
+                child: Text(
+                  'Anurag',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
               ),
-              Text('Account Settings',
+              Center(
+                child: Text(
+                  'anuragc@gmail.com',
                   style: TextStyle(
-                      color: Color.fromARGB(100, 250, 250, 250), fontSize: 20)),
+                    color: Color.fromARGB(100, 250, 250, 250),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 50),
+              Text(
+                'Account Settings',
+                style: TextStyle(
+                  color: Color.fromARGB(100, 250, 250, 250),
+                  fontSize: 20,
+                ),
+              ),
               ListTile(
                 onTap: () {
-                  // showDialog(
-                  //   context: context,
-                  //   builder: (BuildContext context) {
-                  //     return DialogBox();
-                  //   }
-                  //
                   Get.to(PersonalInfoScreen());
                 },
                 title: const Text(
                   'Personal Information',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                trailing: const Icon(Icons.arrow_forward,
-                    size: 20, color: Colors.white),
+                trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
               ),
-              const Text('Help & Support',
-                  style: TextStyle(
-                      color: Color.fromARGB(100, 250, 250, 250), fontSize: 20)),
-
-                ListTile(
-                  onTap: () {
-                    // Add your FAQ page route here
-                    Get.to(() => FAQScreen());
-                  },
-                  title: const Text(
-                    'FAQ',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                  trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+              const Text(
+                'Help & Support',
+                style: TextStyle(
+                  color: Color.fromARGB(100, 250, 250, 250),
+                  fontSize: 20,
                 ),
-                ListTile(
-                  onTap: () {
-                    // Add your Help page route here
-                    Get.to(() => HelpScreen());
-                  },
-                  title: const Text(
-                    'Help',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                  trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+              ),
+              ListTile(
+                onTap: () {
+                  Get.to(() => FAQScreen());
+                },
+                title: const Text(
+                  'FAQ',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                ListTile(
-                  onTap: () {
-                    // Add your Contact Us page route here
-                    Get.to(() => ContactUsScreen());
-                  },
-                  title: const Text(
-                    'Contact Us',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                  trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+                trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+              ),
+              ListTile(
+                onTap: () {
+                  Get.to(() => HelpScreen());
+                },
+                title: const Text(
+                  'Help',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                ListTile(
-                  onTap: () {
-                    Get.to(() => myRegister());
-                  },
-                  title: const Text(
-                    'Log Out',
-                    style: TextStyle(color: Colors.redAccent, fontSize: 19),
-                  ),
-                  // trailing: Text('>',style: TextStyle(color: Colors.white,fontSize: 16),),
+                trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+              ),
+              ListTile(
+                onTap: () {
+                  Get.to(() => ContactUsScreen());
+                },
+                title: const Text(
+                  'Contact Us',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-    ], ),
-      ),
-
+                trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+              ),
+              ListTile(
+                onTap: () {
+                  Get.to(() => loginscreen());
+                },
+                title: const Text(
+                  'Log Out',
+                  style: TextStyle(color: Colors.redAccent, fontSize: 19),
+                ),
+              ),
+            ],
+          ),
         ),
-        );
+      ),
+    );
   }
 }
 
@@ -150,9 +153,7 @@ class _FAQScreenState extends State<FAQScreen> {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               const Align(
                 alignment: Alignment.topCenter,
                 child: Text(
@@ -160,9 +161,7 @@ class _FAQScreenState extends State<FAQScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               ExpansionTile(
                 title: const Text(
                   'What is Dont Book My Show?',
@@ -220,9 +219,7 @@ class _HelpScreenState extends State<HelpScreen> {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               const Align(
                 alignment: Alignment.topCenter,
                 child: Text(
@@ -230,9 +227,7 @@ class _HelpScreenState extends State<HelpScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               ListTile(
                 title: const Text(
                   'How can we help you?',
@@ -274,9 +269,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               const Align(
                 alignment: Alignment.topCenter,
                 child: Text(
@@ -284,16 +277,14 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               ListTile(
                 title: const Text(
                   'Email:',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 subtitle: const Text(
-                  'upport@dontbookmyshow.com',
+                  'support@dontbookmyshow.com',
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),
@@ -313,54 +304,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
         ),
       ),
     );
-
-
   }
 }
 
-// Widget DialogBox(){
-//   return AlertDialog(
-//     title: const Text('Sign in',textAlign: TextAlign.center,),
-//     content: Column(
-//       mainAxisSize: MainAxisSize.min,
-//       children: <Widget>[
-//         const Text('Please sign in to continue'),
-//         const SizedBox(height: 16),
-//         TextField(
-//           decoration: const InputDecoration(
-//             hintText: 'Email address',
-//           ),
-//         ),
-//         const SizedBox(height: 16),
-//         TextField(
-//           obscureText: true,
-//           decoration: const InputDecoration(
-//             hintText: 'Password',
-//           ),
-//         ),
-//         const SizedBox(height: 24),
-//         ElevatedButton(
-//           onPressed: () {
-//             Get.to(()=>(HomePage()));
-//           },
-//           child: const Text('Sign in'),
-//         ),
-//         const SizedBox(height: 16),
-//         const Text('or'),
-//         const SizedBox(height: 16),
-//         ElevatedButton(
-//           onPressed: () {
-//             // Handle Google sign in
-//           },
-//           child: const Text('Google'),
-//         ),
-//
-//       ],
-//     ),
-//     actions: <Widget>[
-//
-//     ],
-//   );
 Widget DialogBox() {
   return AlertDialog(
     title: const Text(
@@ -393,7 +339,7 @@ Widget DialogBox() {
         const SizedBox(height: 24),
         ElevatedButton(
           onPressed: () {
-            Get.to(() => (HomePage1()));
+            Get.to(() => HomePage1());
           },
           child: const Text('Sign in'),
         ),
