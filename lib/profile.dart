@@ -1,6 +1,7 @@
 import 'package:dont_book_my_show/homescreen.dart';
 import 'package:dont_book_my_show/personalinfo.dart';
 import 'package:dont_book_my_show/registration.dart';
+import 'package:dont_book_my_show/screens/FAQ_help.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -52,7 +53,7 @@ class _ProfileState extends State<Profile> {
                         color: Color.fromARGB(100, 250, 250, 250),
                       ))),
               const SizedBox(
-                height: 100,
+                height: 50,
               ),
               Text('Account Settings',
                   style: TextStyle(
@@ -77,28 +78,243 @@ class _ProfileState extends State<Profile> {
               const Text('Help & Support',
                   style: TextStyle(
                       color: Color.fromARGB(100, 250, 250, 250), fontSize: 20)),
-              ListTile(
-                onTap: () {},
+
+                ListTile(
+                  onTap: () {
+                    // Add your FAQ page route here
+                    Get.to(() => FAQScreen());
+                  },
+                  title: const Text(
+                    'FAQ',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+                ),
+                ListTile(
+                  onTap: () {
+                    // Add your Help page route here
+                    Get.to(() => HelpScreen());
+                  },
+                  title: const Text(
+                    'Help',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+                ),
+                ListTile(
+                  onTap: () {
+                    // Add your Contact Us page route here
+                    Get.to(() => ContactUsScreen());
+                  },
+                  title: const Text(
+                    'Contact Us',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+                ),
+                ListTile(
+                  onTap: () {
+                    Get.to(() => myRegister());
+                  },
+                  title: const Text(
+                    'Log Out',
+                    style: TextStyle(color: Colors.redAccent, fontSize: 19),
+                  ),
+                  // trailing: Text('>',style: TextStyle(color: Colors.white,fontSize: 16),),
+                ),
+    ], ),
+      ),
+
+        ),
+        );
+  }
+}
+
+class FAQScreen extends StatefulWidget {
+  const FAQScreen({super.key});
+
+  @override
+  State<FAQScreen> createState() => _FAQScreenState();
+}
+
+class _FAQScreenState extends State<FAQScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              const Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  'FAQ',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ExpansionTile(
                 title: const Text(
-                  'FAQ & Help',
+                  'What is Dont Book My Show?',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                trailing: const Icon(Icons.arrow_forward,
-                    size: 20, color: Colors.white),
+                children: [
+                  ListTile(
+                    title: const Text(
+                      'Dont Book My Show is a platform where you can book your favorite shows and movies.',
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
+              ExpansionTile(
+                title: const Text(
+                  'How do I book a show?',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                children: [
+                  ListTile(
+                    title: const Text(
+                      'You can book a show by selecting the show you want to watch, choosing the date and time, and then paying for the ticket.',
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
+              // Add more FAQ questions and answers here
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HelpScreen extends StatefulWidget {
+  const HelpScreen({super.key});
+
+  @override
+  State<HelpScreen> createState() => _HelpScreenState();
+}
+
+class _HelpScreenState extends State<HelpScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              const Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  'Help',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               ListTile(
-                onTap: () {
-                  Get.to(() => myRegister());
-                },
                 title: const Text(
-                  'Log Out',
-                  style: TextStyle(color: Colors.redAccent, fontSize: 19),
+                  'How can we help you?',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                // trailing: Text('>',style: TextStyle(color: Colors.white,fontSize: 16),),
               ),
+              ListTile(
+                title: const Text(
+                  'You can contact us through email or phone number.',
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                ),
+              ),
+              // Add more help information here
             ],
-          )),
-    ));
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ContactUsScreen extends StatefulWidget {
+  const ContactUsScreen({super.key});
+
+  @override
+  State<ContactUsScreen> createState() => _ContactUsScreenState();
+}
+
+class _ContactUsScreenState extends State<ContactUsScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              const Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  'Contact Us',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ListTile(
+                title: const Text(
+                  'Email:',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                subtitle: const Text(
+                  'upport@dontbookmyshow.com',
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                ),
+              ),
+              ListTile(
+                title: const Text(
+                  'Phone:',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                subtitle: const Text(
+                  '+91 1234567890',
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                ),
+              ),
+              // Add more contact information here
+            ],
+          ),
+        ),
+      ),
+    );
+
+
   }
 }
 

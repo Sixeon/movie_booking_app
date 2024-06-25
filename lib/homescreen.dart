@@ -15,6 +15,7 @@ import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/default_transitions.dart';
 
 class HomePage1 extends StatefulWidget {
    HomePage1({super.key});
@@ -26,6 +27,7 @@ class HomePage1 extends StatefulWidget {
 
 class _HomePageState extends State<HomePage1> {
   BuildContext? _context;
+  List? listofspots=[];
   List listOfMovies = [
     {
       "title": "Bad Boys for Life",
@@ -336,7 +338,7 @@ class _HomePageState extends State<HomePage1> {
                       const Spacer(),
                       TextButton(
                           onPressed: () {
-                            Get.to(allMovies());
+                            Get.to(ticket());
                           },
                           child: const Text(
                             'See More >',
@@ -395,6 +397,10 @@ class _HomePageState extends State<HomePage1> {
                       msg: "Coming soon",
                       toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.CENTER,
+                      backgroundColor: Colors.white,
+                      fontSize: 25,
+                      textColor: Colors.black,
+                      webBgColor: "linear-gradient(to right, #, #dc1c13)",
                     );
                   },
                   icon: const Icon(Icons.bookmarks,
@@ -417,9 +423,9 @@ class _HomePageState extends State<HomePage1> {
 
   Widget movieCard(
       {required var data,
-        required String title,
+        required String filename,
         required String rating,
-        required String imageUrl,
+        required String link,
         required String specs,
         required String description}) {
     return Padding(
@@ -437,10 +443,10 @@ class _HomePageState extends State<HomePage1> {
                   width: 150,
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
-                    child: imageUrl.isEmpty
-                        ? Image.asset('assets/avengers.jpeg')
-                        : Image.network(
-                      imageUrl,
+                    child:
+                    //link.isEmpty // ? Image.asset('assets/avengers.jpeg')
+                         Image.network(
+                      link,
                       fit: BoxFit.fill,
                     ),
                   )),
@@ -459,10 +465,11 @@ class _HomePageState extends State<HomePage1> {
                    size: 12,
                  ),
                 Text(
-                  title,
+                  filename,textAlign: TextAlign.start,
                   style: const TextStyle(
                     color: Colors.amber,
                     fontWeight: FontWeight.bold,
+
                   ),
                 )
               ],
@@ -484,9 +491,9 @@ class _HomePageState extends State<HomePage1> {
         },
         child: movieCard(
           data: v,
-          title: v['Title'].toString(),
+          filename: v['Title'].toString(),
           rating: v['rating'].toString(),
-          imageUrl: (v['Poster'] != null) ? v['Poster'].toString() : '',
+          link: (v['link'] != null) ? v['link'].toString() : '',
           specs: v['Runtime'].toString(),
           description: v['description'].toString(),
         ),
@@ -506,9 +513,9 @@ class _HomePageState extends State<HomePage1> {
         },
         child: movieCard(
           data: v,
-          title: v['title'].toString(),
+          filename: v['title'].toString(),
           rating: v['rating'].toString(),
-          imageUrl: (v['imageUrl'] != null) ? v['imageUrl'].toString() : '',
+          link: (v['link'] != null) ? v['link'].toString() : '',
           specs: (v['specs'] != null) ? v['specs'].toString() : '',
           description: v['description'].toString(),
         ),
@@ -518,7 +525,7 @@ class _HomePageState extends State<HomePage1> {
   }
 
   getSpots() async {
-    String url = 'http://10.10.10.114/web/searching';
+    String url = 'http://10.10.10.114/web/spots/images';
     Dio dio = Dio();
     try {
       var response = await dio.get(url);
@@ -540,7 +547,7 @@ class _HomePageState extends State<HomePage1> {
     }
   }
   getMovies() async {
-    String url = 'http://10.10.10.100/web/managebooks/getbooks';
+    String url = 'http://10.10.10.114/web/spots';
     Dio dio = Dio();
     try {
       var response = await dio.get(url);

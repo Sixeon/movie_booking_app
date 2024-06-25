@@ -109,15 +109,7 @@ class _loginscreenState extends State<loginscreen> {
                       //AnimatedSwitch(//
                       //  colorOff: Color(0xffA09F99),
                       //),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Remember me',
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
+
                       Spacer(),
                       Text(
                         "Forgot Password",
@@ -155,73 +147,21 @@ Get.to(HomePage1());
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        '-----------',
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                      ),
-                      Text(
-                        'Or Login With',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        '-----------',
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                      ),
+
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff484848),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: const Icon(
-                        Icons.g_mobiledata,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff484848),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: const Icon(
-                        Icons.apple,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff484848),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: const Icon(
-                        Icons.facebook,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                    ),
-                  ],
-                ),
+
                 InkWell(
                   onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => myRegister())),
                   child: const Padding(
-                    padding: EdgeInsets.only(left: 100.0, top: 30),
+                    padding: EdgeInsets.only(left: 115.0, top: 5),
                     child: Row(
                       children: <Widget>[
                         Text(
                           "Don't have an account?",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.grey,
                           ),

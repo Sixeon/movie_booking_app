@@ -31,9 +31,13 @@ class _ticketState extends State<ticket> {
                   ),
                 ),
                 SizedBox(height: 100,),
-                Divider(thickness: 0.5,)
+                Divider(thickness: 0.5,),
+
               ],
+
             ),
+
+
           ),
         ),
       ),

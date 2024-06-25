@@ -159,8 +159,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                           return GestureDetector(
                             onTap: () {
                               setState(() {
-                                selectedSeats[index + 5] =
-                                    !selectedSeats[index + 5];
+                                selectedSeats[index + 10] =
+                                !selectedSeats[index + 10];
                                 totalSelectedSeats = selectedSeats
                                     .where((element) => element)
                                     .length;
@@ -170,7 +170,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                color: selectedSeats[index + 5]
+                                color: selectedSeats[index + 10]
                                     ? Colors.red
                                     : Colors.grey[300],
                                 border: Border.all(
@@ -198,8 +198,8 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                           return GestureDetector(
                             onTap: () {
                               setState(() {
-                                selectedSeats[index + 10] =
-                                    !selectedSeats[index + 10];
+                                selectedSeats[index + 20] =
+                                !selectedSeats[index + 20];
                                 totalSelectedSeats = selectedSeats
                                     .where((element) => element)
                                     .length;
@@ -209,7 +209,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                color: selectedSeats[index + 10]
+                                color: selectedSeats[index + 20]
                                     ? Colors.red
                                     : Colors.grey[300],
                                 border: Border.all(
@@ -232,285 +232,286 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                         }),
                       ),
                       Row(
-                        children: [
-                          Column(
-                            children: List.generate(4, (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedSeats[index + 10] =
-                                    !selectedSeats[index + 10];
-                                    totalSelectedSeats = selectedSeats
-                                        .where((element) => element)
-                                        .length;
-                                  });
-                                },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: selectedSeats[index + 10]
-                                        ? Colors.red
-                                        : Colors.grey[300],
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
+                          children: [
+                            Column(
+                              children: List.generate(4, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedSeats[index + 20] =
+                                      !selectedSeats[index + 20];
+                                      totalSelectedSeats = selectedSeats
+                                          .where((element) => element)
+                                          .length;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: selectedSeats[index + 20]
+                                          ? Colors.red
+                                          : Colors.grey[300],
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'D${index + 1}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                    child: Center(
+                                      child: Text(
+                                        'D${index + 1}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            }),
-                          ),
-                          Column(
-                            children: List.generate(4, (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedSeats[index + 10] =
-                                    !selectedSeats[index + 10];
-                                    totalSelectedSeats = selectedSeats
-                                        .where((element) => element)
-                                        .length;
-                                  });
-                                },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: selectedSeats[index + 10]
-                                        ? Colors.red
-                                        : Colors.grey[300],
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
+                                );
+                              }),
+                            ),
+                            Column(
+                              children: List.generate(4, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedSeats[index + 20] =
+                                      !selectedSeats[index + 20];
+                                      totalSelectedSeats = selectedSeats
+                                          .where((element) => element)
+                                          .length;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: selectedSeats[index + 20]
+                                          ? Colors.red
+                                          : Colors.grey[300],
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'E${index + 1}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                    child: Center(
+                                      child: Text(
+                                        'E${index + 1}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            }),
-                          ),
-                          SizedBox(width: 60,),
-                          Column(
-                            children: List.generate(4, (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedSeats[index + 10] =
-                                    !selectedSeats[index + 10];
-                                    totalSelectedSeats = selectedSeats
-                                        .where((element) => element)
-                                        .length;
-                                  });
-                                },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: selectedSeats[index + 10]
-                                        ? Colors.red
-                                        : Colors.grey[300],
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
+                                );
+                              }),
+                            ),
+                            SizedBox(width: 60,),
+                            Column(
+                              children: List.generate(4, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedSeats[index + 20] =
+                                      !selectedSeats[index + 20];
+                                      totalSelectedSeats = selectedSeats
+                                          .where((element) => element)
+                                          .length;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: selectedSeats[index + 20]
+                                          ? Colors.red
+                                          : Colors.grey[300],
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'F${index + 1}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                    child: Center(
+                                      child: Text(
+                                        'F${index + 1}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            }),
-                          ),
-                          Column(
-                            children: List.generate(4, (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedSeats[index + 10] =
-                                    !selectedSeats[index + 10];
-                                    totalSelectedSeats = selectedSeats
-                                        .where((element) => element)
-                                        .length;
-                                  });
-                                },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: selectedSeats[index + 10]
-                                        ? Colors.red
-                                        : Colors.grey[300],
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
+                                );
+                              }),
+                            ),
+                            Column(
+                              children: List.generate(4, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedSeats[index + 20] =
+                                      !selectedSeats[index + 20];
+                                      totalSelectedSeats = selectedSeats
+                                          .where((element) => element)
+                                          .length;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: selectedSeats[index + 20]
+                                          ? Colors.red
+                                          : Colors.grey[300],
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'G${index + 1}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                    child: Center(
+                                      child: Text(
+                                        'G${index + 1}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            }),
-                          ),
-                          Column(
-                            children: List.generate(4, (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedSeats[index + 10] =
-                                    !selectedSeats[index + 10];
-                                    totalSelectedSeats = selectedSeats
-                                        .where((element) => element)
-                                        .length;
-                                  });
-                                },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: selectedSeats[index + 10]
-                                        ? Colors.red
-                                        : Colors.grey[300],
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
+                                );
+                              }),
+                            ),
+                            Column(
+                              children: List.generate(4, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedSeats[index + 20] =
+                                      !selectedSeats[index + 20];
+                                      totalSelectedSeats = selectedSeats
+                                          .where((element) => element)
+                                          .length;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: selectedSeats[index + 20]
+                                          ? Colors.red
+                                          : Colors.grey[300],
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'G${index + 1}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                    child: Center(
+                                      child: Text(
+                                        'H${index + 1}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            }),
-                          ),
-                          SizedBox(width: 60,),
-                          Column(
-                            children: List.generate(4, (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedSeats[index + 10] =
-                                    !selectedSeats[index + 10];
-                                    totalSelectedSeats = selectedSeats
-                                        .where((element) => element)
-                                        .length;
-                                  });
-                                },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: selectedSeats[index + 10]
-                                        ? Colors.red
-                                        : Colors.grey[300],
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
+                                );
+                              }),
+                            ),
+                            SizedBox(width: 60,),
+                            Column(
+                              children: List.generate(4, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedSeats[index + 20] =
+                                      !selectedSeats[index + 20];
+                                      totalSelectedSeats = selectedSeats
+                                          .where((element) => element)
+                                          .length;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: selectedSeats[index + 20]
+                                          ? Colors.red
+                                          : Colors.grey[300],
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'G${index + 1}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                    child: Center(
+                                      child: Text(
+                                        'I${index + 1}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            }),
-                          ),
-                          Column(
-                            children: List.generate(4, (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedSeats[index + 10] =
-                                    !selectedSeats[index + 10];
-                                    totalSelectedSeats = selectedSeats
-                                        .where((element) => element)
-                                        .length;
-                                  });
-                                },
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: selectedSeats[index + 10]
-                                        ? Colors.red
-                                        : Colors.grey[300],
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
+                                );
+                              }),
+                            ),
+                            Column(
+                              children: List.generate(4, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedSeats[index + 20] =
+                                      !selectedSeats[index + 20];
+                                      totalSelectedSeats = selectedSeats
+                                          .where((element) => element)
+                                          .length;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: selectedSeats[index + 20]
+                                          ? Colors.red
+                                          : Colors.grey[300],
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'G${index + 1}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                    child: Center(
+                                      child: Text(
+                                        'J${index + 1}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                               );
                             }),
                           ),
 
                         ]
                       ),
+
+                      // SizedBox(height: 30,),
                       // Row(
                       //   children: List.generate(10, (index) {
                       //     return GestureDetector(
                       //       onTap: () {
                       //         setState(() {
-                      //           selectedSeats[index + 10] =
-                      //               !selectedSeats[index + 10];
+                      //           selectedSeats[index+58] = !selectedSeats[index+58];
                       //           totalSelectedSeats = selectedSeats
                       //               .where((element) => element)
                       //               .length;
@@ -520,7 +521,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //         width: 40,
                       //         height: 40,
                       //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index + 10]
+                      //           color: selectedSeats[index+58]
                       //               ? Colors.red
                       //               : Colors.grey[300],
                       //           border: Border.all(
@@ -531,7 +532,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //         ),
                       //         child: Center(
                       //           child: Text(
-                      //             'C${index + 1}',
+                      //             'K${index + 1}',
                       //             style: TextStyle(
                       //               color: Colors.white,
                       //               fontWeight: FontWeight.bold,
@@ -547,8 +548,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //     return GestureDetector(
                       //       onTap: () {
                       //         setState(() {
-                      //           selectedSeats[index + 10] =
-                      //               !selectedSeats[index + 10];
+                      //           selectedSeats[index+68] = !selectedSeats[index+68];
                       //           totalSelectedSeats = selectedSeats
                       //               .where((element) => element)
                       //               .length;
@@ -558,7 +558,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //         width: 40,
                       //         height: 40,
                       //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index + 10]
+                      //           color: selectedSeats[index+68]
                       //               ? Colors.red
                       //               : Colors.grey[300],
                       //           border: Border.all(
@@ -569,7 +569,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //         ),
                       //         child: Center(
                       //           child: Text(
-                      //             'C${index + 1}',
+                      //             'L${index + 1}',
                       //             style: TextStyle(
                       //               color: Colors.white,
                       //               fontWeight: FontWeight.bold,
@@ -585,8 +585,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //     return GestureDetector(
                       //       onTap: () {
                       //         setState(() {
-                      //           selectedSeats[index + 10] =
-                      //               !selectedSeats[index + 10];
+                      //           selectedSeats[index+78] = !selectedSeats[index+78];
                       //           totalSelectedSeats = selectedSeats
                       //               .where((element) => element)
                       //               .length;
@@ -596,7 +595,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //         width: 40,
                       //         height: 40,
                       //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index + 10]
+                      //           color: selectedSeats[index+78]
                       //               ? Colors.red
                       //               : Colors.grey[300],
                       //           border: Border.all(
@@ -607,7 +606,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //         ),
                       //         child: Center(
                       //           child: Text(
-                      //             'C${index + 1}',
+                      //             'M${index + 1}',
                       //             style: TextStyle(
                       //               color: Colors.white,
                       //               fontWeight: FontWeight.bold,
@@ -617,233 +616,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                       //       ),
                       //     );
                       //   }),
-                      // ),
-                      // Row(
-                      //   children: List.generate(10, (index) {
-                      //     return GestureDetector(
-                      //       onTap: () {
-                      //         setState(() {
-                      //           selectedSeats[index + 10] =
-                      //               !selectedSeats[index + 10];
-                      //           totalSelectedSeats = selectedSeats
-                      //               .where((element) => element)
-                      //               .length;
-                      //         });
-                      //       },
-                      //       child: Container(
-                      //         width: 40,
-                      //         height: 40,
-                      //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index + 10]
-                      //               ? Colors.red
-                      //               : Colors.grey[300],
-                      //           border: Border.all(
-                      //             color: Colors.black,
-                      //             width: 1,
-                      //           ),
-                      //           borderRadius: BorderRadius.circular(5),
-                      //         ),
-                      //         child: Center(
-                      //           child: Text(
-                      //             'C${index + 1}',
-                      //             style: TextStyle(
-                      //               color: Colors.white,
-                      //               fontWeight: FontWeight.bold,
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     );
-                      //   }),
-                      // ),
-                      // Row(
-                      //   children: List.generate(10, (index) {
-                      //     return GestureDetector(
-                      //       onTap: () {
-                      //         setState(() {
-                      //           selectedSeats[index + 10] =
-                      //               !selectedSeats[index + 10];
-                      //           totalSelectedSeats = selectedSeats
-                      //               .where((element) => element)
-                      //               .length;
-                      //         });
-                      //       },
-                      //       child: Container(
-                      //         width: 40,
-                      //         height: 40,
-                      //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index + 10]
-                      //               ? Colors.red
-                      //               : Colors.grey[300],
-                      //           border: Border.all(
-                      //             color: Colors.black,
-                      //             width: 1,
-                      //           ),
-                      //           borderRadius: BorderRadius.circular(5),
-                      //         ),
-                      //         child: Center(
-                      //           child: Text(
-                      //             'C${index + 1}',
-                      //             style: TextStyle(
-                      //               color: Colors.white,
-                      //               fontWeight: FontWeight.bold,
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     );
-                      //   }),
-                      // ),
-                      // Row(
-                      //   children: List.generate(10, (index) {
-                      //     return GestureDetector(
-                      //       onTap: () {
-                      //         setState(() {
-                      //           selectedSeats[index + 10] =
-                      //               !selectedSeats[index + 10];
-                      //           totalSelectedSeats = selectedSeats
-                      //               .where((element) => element)
-                      //               .length;
-                      //         });
-                      //       },
-                      //       child: Container(
-                      //         width: 40,
-                      //         height: 40,
-                      //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index + 10]
-                      //               ? Colors.red
-                      //               : Colors.grey[300],
-                      //           border: Border.all(
-                      //             color: Colors.black,
-                      //             width: 1,
-                      //           ),
-                      //           borderRadius: BorderRadius.circular(5),
-                      //         ),
-                      //         child: Center(
-                      //           child: Text(
-                      //             'C${index + 1}',
-                      //             style: TextStyle(
-                      //               color: Colors.white,
-                      //               fontWeight: FontWeight.bold,
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     );
-                      //   }),
-                      // ),
-                      SizedBox(height: 30,),
-                      Row(
-                        children: List.generate(10, (index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedSeats[index] = !selectedSeats[index];
-                                totalSelectedSeats = selectedSeats
-                                    .where((element) => element)
-                                    .length;
-                              });
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: selectedSeats[index]
-                                    ? Colors.red
-                                    : Colors.grey[300],
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'A${index + 1}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
-                      Row(
-                        children: List.generate(10, (index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedSeats[index] = !selectedSeats[index];
-                                totalSelectedSeats = selectedSeats
-                                    .where((element) => element)
-                                    .length;
-                              });
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: selectedSeats[index]
-                                    ? Colors.red
-                                    : Colors.grey[300],
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'A${index + 1}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
-                      Row(
-                        children: List.generate(10, (index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedSeats[index] = !selectedSeats[index];
-                                totalSelectedSeats = selectedSeats
-                                    .where((element) => element)
-                                    .length;
-                              });
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: selectedSeats[index]
-                                    ? Colors.red
-                                    : Colors.grey[300],
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'A${index + 1}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                      )
+                      // )
                     ],
                   ),
                 ],
