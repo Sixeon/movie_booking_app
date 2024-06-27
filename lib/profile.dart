@@ -1,10 +1,14 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:dont_book_my_show/homescreen.dart';
+import 'package:dont_book_my_show/mybookings.dart';
 import 'package:dont_book_my_show/personalinfo.dart';
 import 'package:dont_book_my_show/registration.dart';
 import 'package:dont_book_my_show/screens/FAQ_help.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dont_book_my_show/screens/booking%20template.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'login.dart';
 
@@ -16,18 +20,56 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String? email;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchemail();
+  }
+
+  Future<void> fetchemail() async {
+    String url = 'http://10.10.10.136/api/login';
+    Dio dio = Dio();
+    try {
+      var response = await dio.get(url);
+
+      if (response.statusCode == 200) {
+        // Assuming the response data is a JSON string
+        if (response.data is String) {
+          Map<String, dynamic> data = (response.data);
+          setState(() {
+            email = data['email'];
+          });
+        } else if (response.data is Map<String, dynamic>) {
+          // If the response data is already a JSON object
+          setState(() {
+            email = response.data['email'];
+          });
+        }
+      } else {
+        log('Failed to load email, status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      log('[e] error $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('Profile',style: TextStyle(color: Colors.white),),
+        appBar: AppBar(
+          title: Text(
+            'Profile',
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.black,
           iconTheme: const IconThemeData(color: Colors.white),
         ),
         body: Padding(
-          padding:  EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
           child: ListView(
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 30),
               Align(
@@ -55,9 +97,9 @@ class _ProfileState extends State<Profile> {
               ),
               Center(
                 child: Text(
-                  'anuragc@gmail.com',
+                  email ?? '',
                   style: TextStyle(
-                    color: Color.fromARGB(100, 250, 250, 250),
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -75,6 +117,16 @@ class _ProfileState extends State<Profile> {
                 },
                 title: const Text(
                   'Personal Information',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
+              ),
+              ListTile(
+                onTap: () {
+                  Get.to(Mybookings());
+                },
+                title: const Text(
+                  'Mybookings',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 trailing: const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
@@ -294,7 +346,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 subtitle: const Text(
-                  '+91 1234567890',
+                  '+91 1234567789',
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),

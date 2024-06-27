@@ -28,6 +28,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
   List<bool> selectedSeats = List<bool>.filled(60, false);
   int totalSelectedSeats = 0;
 
+
   // Date and time selection logic
   DateTime selectedDate = DateTime.now();
   String selectedTime = '7:00 PM'; // Add time selection
@@ -38,8 +39,10 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
 
   final List<String> timeList = ['7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM'];
 
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -505,126 +508,11 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
 
                         ]
                       ),
-
-                      // SizedBox(height: 30,),
-                      // Row(
-                      //   children: List.generate(10, (index) {
-                      //     return GestureDetector(
-                      //       onTap: () {
-                      //         setState(() {
-                      //           selectedSeats[index+58] = !selectedSeats[index+58];
-                      //           totalSelectedSeats = selectedSeats
-                      //               .where((element) => element)
-                      //               .length;
-                      //         });
-                      //       },
-                      //       child: Container(
-                      //         width: 40,
-                      //         height: 40,
-                      //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index+58]
-                      //               ? Colors.red
-                      //               : Colors.grey[300],
-                      //           border: Border.all(
-                      //             color: Colors.black,
-                      //             width: 1,
-                      //           ),
-                      //           borderRadius: BorderRadius.circular(5),
-                      //         ),
-                      //         child: Center(
-                      //           child: Text(
-                      //             'K${index + 1}',
-                      //             style: TextStyle(
-                      //               color: Colors.white,
-                      //               fontWeight: FontWeight.bold,
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     );
-                      //   }),
-                      // ),
-                      // Row(
-                      //   children: List.generate(10, (index) {
-                      //     return GestureDetector(
-                      //       onTap: () {
-                      //         setState(() {
-                      //           selectedSeats[index+68] = !selectedSeats[index+68];
-                      //           totalSelectedSeats = selectedSeats
-                      //               .where((element) => element)
-                      //               .length;
-                      //         });
-                      //       },
-                      //       child: Container(
-                      //         width: 40,
-                      //         height: 40,
-                      //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index+68]
-                      //               ? Colors.red
-                      //               : Colors.grey[300],
-                      //           border: Border.all(
-                      //             color: Colors.black,
-                      //             width: 1,
-                      //           ),
-                      //           borderRadius: BorderRadius.circular(5),
-                      //         ),
-                      //         child: Center(
-                      //           child: Text(
-                      //             'L${index + 1}',
-                      //             style: TextStyle(
-                      //               color: Colors.white,
-                      //               fontWeight: FontWeight.bold,
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     );
-                      //   }),
-                      // ),
-                      // Row(
-                      //   children: List.generate(10, (index) {
-                      //     return GestureDetector(
-                      //       onTap: () {
-                      //         setState(() {
-                      //           selectedSeats[index+78] = !selectedSeats[index+78];
-                      //           totalSelectedSeats = selectedSeats
-                      //               .where((element) => element)
-                      //               .length;
-                      //         });
-                      //       },
-                      //       child: Container(
-                      //         width: 40,
-                      //         height: 40,
-                      //         decoration: BoxDecoration(
-                      //           color: selectedSeats[index+78]
-                      //               ? Colors.red
-                      //               : Colors.grey[300],
-                      //           border: Border.all(
-                      //             color: Colors.black,
-                      //             width: 1,
-                      //           ),
-                      //           borderRadius: BorderRadius.circular(5),
-                      //         ),
-                      //         child: Center(
-                      //           child: Text(
-                      //             'M${index + 1}',
-                      //             style: TextStyle(
-                      //               color: Colors.white,
-                      //               fontWeight: FontWeight.bold,
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     );
-                      //   }),
-                      // )
                     ],
                   ),
                 ],
               ),
             ),
-            // Seat Legend
-
             Padding(
 
               padding: const EdgeInsets.all(16.0),
@@ -680,7 +568,6 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                 ],
               ),
             ),
-            // Date and Time Picker
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -696,7 +583,6 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // Date Picker
                       Expanded(
                         child: GestureDetector(
                           onTap: () async {
@@ -738,34 +624,35 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                           ),
                         ),
                       ),
-                      // Time Selector
                       Expanded(
-                        child: DropdownButton(
-                          dropdownColor: Colors.grey,
-                          value: selectedTime,
-                          items: timeList.map((time) {
-                            return DropdownMenuItem(
-                              value: time,
-
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(time,
-                                      style: TextStyle(color: Colors.white)),
-                                  Icon(
-                                    Icons.access_time,
-                                    color: Colors.white,
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedTime = value as String;
-                            });
-                          },
+                        child: Center(
+                          child: DropdownButton(
+                            dropdownColor: Colors.grey,
+                            value: selectedTime,
+                            items: timeList.map((time) {
+                              return DropdownMenuItem(
+                                value: time,
+                          
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(time,
+                                        style: TextStyle(color: Colors.white)),
+                                    Icon(
+                                      Icons.access_time,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedTime = value as String;
+                              });
+                            },
+                          ),
                         ),
                       ),
                     ],
@@ -784,14 +671,13 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                     color: Colors.white),
               ),
             ),
-            // Book Now Button
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: totalSelectedSeats > 0
                     ? () {
                         setState(() {
-                          totalPrice = totalSelectedSeats * 100.0;
+                          totalPrice = totalSelectedSeats * 150.0;
                           // Add your booking logic here
                           print('Booking confirmed!');
                           print(

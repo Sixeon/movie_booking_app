@@ -26,7 +26,10 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Personal Information'),
+        title: Text('Personal Information',style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.white),
+
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
@@ -35,7 +38,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Updates Information',
+              'Update Information',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
             ),
             SizedBox(height: 20),
@@ -58,7 +61,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                     colorText: Colors.white,
                   );
                 },
-                child: Text('Save'),
+                child: Text('Save',style: TextStyle(color: Colors.black),),
               ),
             ),
           ],

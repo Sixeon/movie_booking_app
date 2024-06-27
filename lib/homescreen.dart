@@ -29,6 +29,7 @@ class HomePage1 extends StatefulWidget {
 class _HomePageState extends State<HomePage1> {
   BuildContext? _context;
   List? listofspots=[];
+  String? name;
   List listOfMovies = [
     {
       "title": "Bad Boys for Life",
@@ -37,15 +38,17 @@ class _HomePageState extends State<HomePage1> {
       "specs": 'Action,Comedy : 2hr 4min',
       "description":
       "Two cops from Miami on a journey to fame, find themselves entangled with a cross border crime syndicate",
+      'ytlink':'https://youtu.be/jKCj3XuPG8M?si=bVducTDFXLgM-Z0P',
     },
     {
-      "title": "Avengers",
+      "title": "Avengers infinity war",
       "rating": 'IMDb:8.4',
       "imageUrl": "assets/avengers.jpeg",
       "specs": 'Action,Sci-fi : 2hr 29min',
       "description":
       'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the '
           'powerful Thanos before his blitz of devastation and ruin puts an end to the universe',
+      'ytlink':'https://youtu.be/6ZfuNTqbHE8?si=K5rJ2Z83gtJq9nme',
     },
     {
       "imageUrl": 'assets/Batman.jpeg',
@@ -57,6 +60,7 @@ class _HomePageState extends State<HomePage1> {
           'cryptic clues. As the evidence begins to lead closer to home and the scale of the perpetrator\'s plans become clear,'
           ' he must forge new relationships, '
           'unmask the culprit and bring justice to the abuse of power and corruption that has long plagued the metropolis.',
+      'ytlink':'https://youtu.be/mqqft2x_Aa4?si=GPKw34DcwP5W-VJe',
     },
     {
       "imageUrl": 'assets/joker.jpeg',
@@ -66,6 +70,7 @@ class _HomePageState extends State<HomePage1> {
       "description":
       'During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham'
           ' City while becoming an infamous psychopathic crime figure.',
+      'ytlink':'https://youtu.be/xy8aJw1vYHo?si=jru9psVRDRIJWdC5',
     }
   ];
   List listOfPopularMovies = [
@@ -77,6 +82,7 @@ class _HomePageState extends State<HomePage1> {
       "description":
       'In the 1970s, a gangster named Rocky goes undercover as a slave to '
           'assassinate the owner of a notorious gold mine known as the Kolar Gold Fields',
+      'ytlink':'https://youtu.be/-KfsY-qwBS0?si=J2otMdb66PBz1gyQ',
     },
     {
       "title": "Pathaan",
@@ -86,6 +92,7 @@ class _HomePageState extends State<HomePage1> {
       "description":
       'An Indian agent races against a doomsday clock as a ruthless mercenary,'
           ' with a bitter vendetta, mounts an apocalyptic attack against the country',
+      'ytlink':'https://youtu.be/vqu4z34wENw?si=96oukwpJS1gyAro1',
     },
     {
       "title": "Fury",
@@ -95,6 +102,7 @@ class _HomePageState extends State<HomePage1> {
       "description":
       'A grizzled tank commander makes tough decisions as he and '
           'his crew fight their way across Germany in April, 1945.',
+      'ytlink':'https://youtu.be/q94n3eWOWXM?si=tIcuXBZptmiwdICI',
     },
     {
       "title": "John Wick 3",
@@ -105,6 +113,7 @@ class _HomePageState extends State<HomePage1> {
       'John Wick is on the run after killing a member of the international assassins guild, '
           'and with a '
           '14 million price tag on his head, he is the target of hit men and women everywhere',
+      'ytlink':'https://youtu.be/M7XM597XO94?si=Wxpm-2zbRUDTgsJJ',
     },
     {
       "title": "The Fast and the Furious",
@@ -114,9 +123,11 @@ class _HomePageState extends State<HomePage1> {
       "description":
       'Los Angeles police officer Brian O Conner must decide where his loyalty really lies '
           'when he becomes enamored with the street racing world he has been sent undercover to end it.',
-      "yt_link": '',
+      "ytlink": 'https://youtu.be/ZsJz2TJAPjw?si=Pa9L8v4ozQ6s8oAE',
     },
   ];
+
+
   void _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -124,7 +135,26 @@ class _HomePageState extends State<HomePage1> {
       throw 'Could not launch $url';
     }
   }
+  void initState() {
+    super.initState();
+    fetchname(); // Fetch the user's name when the widget is initialized
+  }
 
+  Future<void> fetchname() async {
+    // Replace this with your actual API endpoint
+    String url = 'http://10.10.10.136/api/login';
+    Dio dio = Dio();
+    try {
+      var response = await dio.get(url);
+      Map<String, dynamic> data = jsonDecode(response.data);
+
+      setState(() {
+        name = data['name']; // Assuming the response contains a 'name' field
+      });
+    } catch (e) {
+      log('[e] error $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = ThemeData(
@@ -141,16 +171,16 @@ class _HomePageState extends State<HomePage1> {
         body: Container(
           color: Colors.black26,
           child: Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: EdgeInsets.all(18.0),
             child: ListView(
               children: [
                 Row(
                   children: [
-                    const Column(
+                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hello Anurag!',
+                          'Hello ${name ??''}',
                           style: TextStyle(
                               color: Color.fromARGB(255, 255, 50, 50),
                               fontSize: 25),
@@ -187,9 +217,11 @@ class _HomePageState extends State<HomePage1> {
                 const SizedBox(
                   height: 16,
                 ),
-                SearchAnchor(
+                Container(height: 40,
+                  child:SearchAnchor(
                     builder: (BuildContext context, SearchController controller) {
                       return SearchBar(
+                        // surfaceTintColor: Colors.white,
                         controller: controller,
                         padding: const WidgetStatePropertyAll<EdgeInsets>(
                             EdgeInsets.symmetric(horizontal: 16.0)),
@@ -229,7 +261,8 @@ class _HomePageState extends State<HomePage1> {
                       },
                     );
                   });
-                }),
+                }), ),
+
                 const SizedBox(
                   height: 16,
                 ),
@@ -272,23 +305,17 @@ class _HomePageState extends State<HomePage1> {
                             children: [
                               Row(
                                 children: [
-                                  const Column(
-                                    children: [
-                                      // Text('Batman'),
-                                      // Text('The Dark Knight')
-                                    ],
-                                  ),
                                   TextButton.icon(
                                     icon: const Icon(
                                       Icons.play_arrow,
-                                      color: Colors.white,
+                                      color: Colors.red,
                                     ),
                                     onPressed: () {_launchURL('https://youtu.be/mqqft2x_Aa4?si=4coH-DdPYQ0MayGY');},
                                     label: const Text(
                                       textAlign: TextAlign.center,
                                       'Watch Now',
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.red,
                                       ),
                                     ),
                                   )
@@ -309,12 +336,7 @@ class _HomePageState extends State<HomePage1> {
                     const Spacer(),
                     TextButton(
                         onPressed: () {
-                          Get.to(allMovies());
-                          Get.to(() => allMovies());
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => allMovies()),
-                          );
+                          Get.to(() => TicketScreen());
                         },
                         child: const Text(
                           'See More >',
@@ -435,7 +457,8 @@ class _HomePageState extends State<HomePage1> {
         required String rating,
         required String imageUrl,
         required String specs,
-        required String description}) {
+        required String description,
+      required String ytlink,}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -464,18 +487,16 @@ class _HomePageState extends State<HomePage1> {
             ),
             Row(
               children: [
-                const SizedBox(
-                width: 60,
-                ),
+                
 
 
                 Text(
-                  title,textAlign: TextAlign.left,
+                  title,
                   style: const TextStyle(
                     fontSize: 15,
                     color: Colors.amber,
                     fontWeight: FontWeight.bold,
-
+                
                   ),
                 )
               ],
@@ -502,6 +523,7 @@ class _HomePageState extends State<HomePage1> {
           imageUrl: (v['imageUrl'] != null) ? v['imageUrl'].toString() : '',
           specs: v['Runtime'].toString(),
           description: v['description'].toString(),
+          ytlink: v['ytlink'].toString()
         ),
       ));
     }
@@ -524,58 +546,59 @@ class _HomePageState extends State<HomePage1> {
           imageUrl: (v['imageUrl'] != null) ? v['imageUrl'].toString() : '',
           specs: (v['specs'] != null) ? v['specs'].toString() : '',
           description: v['description'].toString(),
+            ytlink: v['ytlink'].toString()
         ),
       ));
     }
     return movies;
   }
 
-  //getSpots() async {
-//     String url = 'http://10.10.10.114/web/spots/images';
-//     Dio dio = Dio();
-//     try {
-//       var response = await dio.get(url);
-//       Map map = response.data;
-//       log('[i] movies count ${map['result'].length}');
-//       for(var book in map['result']){
-//         log("[i] book $book");
-//       }
-//       // listOfMovies = map['movies'];
-//       // print(listOfMovies[0]);
-//       // print(listOfMovies[2]);
-//       // setState(() {
-//       // });
-//       // if(map['status']){
-//       //   print("Movies data $map");
-//       // }
-//     } catch (e) {
-//       log('[e] error $e');
-//     }
-//   }
-//   getMovies() async {
-//     String url = 'http://10.10.10.114/web/spots';
-//     Dio dio = Dio();
-//     try {
-//       var response = await dio.get(url);
-//       Map map = jsonDecode(response.data);
-//       log('[i] movies count ${map['result'].length}');
-//       for(var book in map['result']){
-//         log("[i] book $book");
-//       }
-//       // listOfMovies = map['movies'];
-//       // print(listOfMovies[0]);
-//       // print(listOfMovies[2]);
-//       // setState(() {
-//       // });
-//       // if(map['status']){
-//       //   print("Movies data $map");
-//       // }
-//     } catch (e) {
-//       log('[e] error $e');
-//     }
-//   }
-// }
-// class SearchBarApp extends StatefulWidget {
+  getSpots() async {
+    String url = 'http://10.10.10.136/api/login';
+    Dio dio = Dio();
+    try {
+      var response = await dio.get(url);
+      Map map = response.data;
+      log('[i] movies count ${map['result'].length}');
+      for(var book in map['result']){
+        log("[i] book $book");
+      }
+      // listOfMovies = map['movies'];
+      // print(listOfMovies[0]);
+      // print(listOfMovies[2]);
+      // setState(() {
+      // });
+      // if(map['status']){
+      //   print("Movies data $map");
+      // }
+    } catch (e) {
+      log('[e] error $e');
+    }
+  }
+  getMovies() async {
+    String url = 'http://10.10.10.136/api/login';
+    Dio dio = Dio();
+    try {
+      var response = await dio.get(url);
+      Map map = jsonDecode(response.data);
+      log('[i] movies count ${map['result'].length}');
+      for(var book in map['result']){
+        log("[i] book $book");
+      }
+      // listOfMovies = map['movies'];
+      // print(listOfMovies[0]);
+      // print(listOfMovies[2]);
+      // setState(() {
+      // });
+      // if(map['status']){
+      //   print("Movies data $map");
+      // }
+    } catch (e) {
+      log('[e] error $e');
+    }
+  }
+}
+//class SearchBarApp extends StatefulWidget {
 //   const SearchBarApp({super.key});
 //
 //   @override
@@ -639,4 +662,3 @@ class _HomePageState extends State<HomePage1> {
 //     );
 //   }
 //
-}

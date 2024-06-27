@@ -15,27 +15,33 @@ class myRegister extends StatefulWidget {
 }
 
 class _myRegisterState extends State<myRegister> {
-  TextEditingController library_idController = TextEditingController();
+  //TextEditingController library_idController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  //TextEditingController mobileController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
   TextEditingController passController = TextEditingController();
-  //TextEditingController confirmPassController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
+  TextEditingController confirmPassController = TextEditingController();
+  //TextEditingController addressController = TextEditingController();
   bool _passwordVisible = true;
 
-  void registerUser(String name, String email, String password, String address,
-      String library_id) async {
-    String url = "http://10.10.10.100/web/authentication/signup";
+  void registerUser(
+    String name,
+    String email,
+    String mobile,
+    String password,
+    String confirmPassword,
+
+  ) async {
+    String url = "http://10.10.10.136/api/users";
     var body = {
-      'library_id': library_id,
       'name': name,
       'email': email,
-      //'mobile': mobile,
-      'address': address,
+      'mobile': mobile,
       'password': password,
+      'confirmPassword':confirmPassword,
     };
 
+    log("${body}");
     Dio dio = Dio();
     try {
       var response = await dio.post(
@@ -49,7 +55,7 @@ class _myRegisterState extends State<myRegister> {
       );
       log('${response.data}');
       log('${response.statusCode}');
-      Map map = jsonDecode(response.data);
+      Map map = response.data;
       if (map['status']) {
         Fluttertoast.showToast(
           msg: "Registration successful!",
@@ -58,7 +64,7 @@ class _myRegisterState extends State<myRegister> {
         );
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => loginscreen()),
+          MaterialPageRoute(builder: (context) => const loginscreen()),
         );
       } else {
         Fluttertoast.showToast(
@@ -79,8 +85,11 @@ class _myRegisterState extends State<myRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Register'),
+        forceMaterialTransparency: true,
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text('Register',style: TextStyle(color: Colors.white),),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -93,56 +102,25 @@ class _myRegisterState extends State<myRegister> {
           backgroundColor: Colors.transparent,
           body: Stack(
             children: [
-              Container(
-                padding: const EdgeInsets.only(left: 260, top: 5),
-                child: const Text('Welcome Tourists',
-                    style: TextStyle(color: Colors.white, fontSize: 20)),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 290, top: 27),
-                child: const Text('PLEASE REGISTER',
-                    style: TextStyle(color: Colors.white, fontSize: 15)),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 35, top: 170),
-                child: Text(
-                  'Create Account',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
+
+
               SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * 0.25,
                     left: 20,
                     right: 20,
+
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+
                     children: [
-                      SizedBox(height: 20),
-                      TextField(
-                        controller: library_idController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          hintText: "library_id",
-                          hintStyle: TextStyle(color: Colors.white),
-                          labelText: 'library_id',
-                          labelStyle: TextStyle(color: Colors.white),
-                        ),
+                       Text(
+                        'CREATE ACCOUNT',
+                        style: TextStyle(color: Colors.white, fontSize: 30,fontWeight: FontWeight.bold),
                       ),
+                      SizedBox(height: 30),
                       TextField(
                         controller: nameController,
                         style: TextStyle(color: Colors.white),
@@ -165,7 +143,9 @@ class _myRegisterState extends State<myRegister> {
                           labelStyle: TextStyle(color: Colors.white),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(
+                        height: 20,
+                      ),
                       TextField(
                         controller: emailController,
                         style: TextStyle(color: Colors.white),
@@ -182,9 +162,32 @@ class _myRegisterState extends State<myRegister> {
                               color: Colors.white,
                             ),
                           ),
-                          hintText: "Email",
+                          hintText: "E-mail",
                           hintStyle: TextStyle(color: Colors.white),
-                          labelText: 'Email',
+                          labelText: 'E-mail',
+                          labelStyle: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      TextField(
+                        controller: mobileController,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          hintText: "Mobile",
+                          hintStyle: TextStyle(color: Colors.white),
+                          labelText: 'Mobile',
                           labelStyle: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -212,30 +215,30 @@ class _myRegisterState extends State<myRegister> {
                       //     labelStyle: TextStyle(color: Colors.white),
                       //   ),
                       // ),
-                      SizedBox(height: 20),
-                      TextField(
-                        controller: addressController,
-                        keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          hintText: "address",
-                          hintStyle: TextStyle(color: Colors.white),
-                          labelText: 'address',
-                          labelStyle: TextStyle(color: Colors.white),
-                        ),
-                      ),
+                      // SizedBox(height: 20),
+                      // TextField(
+                      //   controller: addressController,
+                      //   keyboardType: TextInputType.emailAddress,
+                      //   style: TextStyle(color: Colors.white),
+                      //   decoration: InputDecoration(
+                      //     enabledBorder: OutlineInputBorder(
+                      //       borderRadius: BorderRadius.circular(10),
+                      //       borderSide: BorderSide(
+                      //         color: Colors.white,
+                      //       ),
+                      //     ),
+                      //     focusedBorder: OutlineInputBorder(
+                      //       borderRadius: BorderRadius.circular(10),
+                      //       borderSide: BorderSide(
+                      //         color: Colors.white,
+                      //       ),
+                      //     ),
+                      //     hintText: "address",
+                      //     hintStyle: TextStyle(color: Colors.white),
+                      //     labelText: 'Address',
+                      //     labelStyle: TextStyle(color: Colors.white),
+                      //   ),
+                      // ),
                       SizedBox(height: 20),
                       TextField(
                         controller: passController,
@@ -271,31 +274,31 @@ class _myRegisterState extends State<myRegister> {
                           ),
                         ),
                       ),
-                      // SizedBox(height: 20),
-                      // TextField(
-                      //   controller: confirmPassController,
-                      //   style: TextStyle(color: Colors.white),
-                      //   obscureText: true,
-                      //   decoration: InputDecoration(
-                      //     enabledBorder: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       borderSide: BorderSide(
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //     focusedBorder: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       borderSide: BorderSide(
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //     hintText: "Confirm Password",
-                      //     hintStyle: TextStyle(color: Colors.white),
-                      //     labelText: 'Confirm Password',
-                      //     labelStyle: TextStyle(color: Colors.white),
-                      //
-                      //   ),
-                      // ),
+                      SizedBox(height: 20),
+                      TextField(
+                        controller: confirmPassController,
+                        style: TextStyle(color: Colors.white),
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          hintText: "Confirm Password",
+                          hintStyle: TextStyle(color: Colors.white),
+                          labelText: 'Confirm Password',
+                          labelStyle: TextStyle(color: Colors.white),
+
+                        ),
+                      ),
                       SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -328,12 +331,13 @@ class _myRegisterState extends State<myRegister> {
                               // Validate input fields
                               if (_validateFields()) {
                                 registerUser(
-                                    library_idController.text.trim(),
+                                    // library_idController.text.trim(),
                                     nameController.text.trim(),
                                     emailController.text.trim(),
-                                    // mobileController.text.trim(),
+                                    mobileController.text.trim(),
                                     passController.text.trim(),
-                                    addressController.text.trim());
+                                    confirmPassController.text.trim());
+
                               }
                             },
                             child: const Text('Save',
@@ -348,7 +352,7 @@ class _myRegisterState extends State<myRegister> {
                   ),
                 ),
               ),
-            ],
+            ]
           ),
         ),
       ),
@@ -358,22 +362,22 @@ class _myRegisterState extends State<myRegister> {
   bool _validateFields() {
     if (nameController.text.isEmpty ||
         emailController.text.isEmpty ||
-        // mobileController.text.isEmpty ||
+        mobileController.text.isEmpty ||
         passController.text.isEmpty ||
-        addressController.text.isEmpty) {
+        confirmPassController.text.isEmpty) {
       Fluttertoast.showToast(
         msg: "Please fill all fields.",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
       );
-      //   return false;
-      // } else if (passController.text != addressController.text) {
-      //   Fluttertoast.showToast(
-      //     msg: "Passwords do not match.",
-      //     toastLength: Toast.LENGTH_SHORT,
-      //     gravity: ToastGravity.CENTER,
-      //   );
-      //   return false;
+        return false;
+      } else if (passController.text != confirmPassController.text) {
+        Fluttertoast.showToast(
+          msg: "Passwords do not match.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+        );
+        return false;
     }
     return true;
   }

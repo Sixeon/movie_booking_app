@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:dont_book_my_show/homescreen.dart';
 import 'package:dont_book_my_show/registration.dart';
@@ -20,27 +19,38 @@ class loginscreen extends StatefulWidget {
 }
 
 class _loginscreenState extends State<loginscreen> {
-  TextEditingController library_idController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool _passwordVisible = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        body: Container(
+        decoration: BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage('assets/batman.jpeg'),
+    fit: BoxFit.cover,
+    ),
+    ),
+    child: Scaffold(
+    backgroundColor: Colors.transparent,
       body: Stack(
         children: [
           Container(
-            color: Colors.blue.withOpacity(0.5),
+
+
           ),
-          Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Colors.black,
-              Colors.black.withOpacity(0.8),
-              Colors.black.withOpacity(0.15),
-              Colors.black.withOpacity(0.5),
-            ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
-          ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //
+          //       gradient: LinearGradient(colors: [
+          //     Colors.black,
+          //     Colors.black.withOpacity(0.8),
+          //     Colors.black.withOpacity(0.15),
+          //     Colors.black.withOpacity(0.5),
+          //   ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
+          // ),
           // Expanded(child: ListView.builder(
           //   itemCount: numbers.length, // Replace 10 with the length of your data list
           //   itemBuilder: (context, index) {
@@ -70,10 +80,18 @@ class _loginscreenState extends State<loginscreen> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: TextField(
-                    controller: library_idController,
-                    decoration: const InputDecoration(
-                      hintText: 'libraryID',
-                      label: Text('library_id'),
+                    controller: emailController,
+                    decoration:  InputDecoration(
+                      hintText: 'email',
+                      label: Text('email'),
+                      prefixIcon:
+                      IconButton(onPressed: () {}, icon: const Icon(Icons.email_rounded)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            bottomRight: Radius.circular(12)
+                        ),
+                      ),
                       fillColor: Color(0xffD8D8DD),
                       filled: true,
                     ),
@@ -85,10 +103,20 @@ class _loginscreenState extends State<loginscreen> {
                     controller: passwordController,
                     obscureText: _passwordVisible,
                     decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12)
+                          ),
+                        ),
+
                       hintText: 'password',
-                      label: const Text('password'),
+                      label: const Text('Password'),
                       fillColor: const Color(0xffD8D8DD),
                       filled: true,
+                      prefixIcon: IconButton(
+                        onPressed: (){}, icon: Icon(Icons.key),
+                      ),
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -115,6 +143,7 @@ class _loginscreenState extends State<loginscreen> {
                         "Forgot Password",
                         style: TextStyle(
                           color: Colors.grey,
+                          fontSize: 17
                         ),
                       ),
                     ],
@@ -130,8 +159,10 @@ class _loginscreenState extends State<loginscreen> {
                   ),
                   onPressed: () {
 
-                      signIn(passwordController.text.trim(),
-                       library_idController.text.trim());
+                    Get.to(HomePage1());
+                      // login(
+                      //  emailController.text.trim(),
+                      //     passwordController.text.trim());
                   },
                   child: const Text('Sign in',
                       style: TextStyle(
@@ -163,7 +194,7 @@ class _loginscreenState extends State<loginscreen> {
                           "Don't have an account?",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.white,fontSize: 17
                           ),
                         ),
                         Text(
@@ -182,20 +213,21 @@ class _loginscreenState extends State<loginscreen> {
           )
         ],
       ),
-    );
+    )));
   }
 
-  void signIn(String password, String libraryId) async {
-    String url = "http://10.10.10.100/web/authentication/signin";
+  void login(String email,String password ) async {
+    String url = "http://10.10.10.136/api/login";
     var body = {
-      'library_id': libraryId,
-      'password': password,
+      'email':email,
+      'password':password,
     };
+    log("${body}");
     Dio dio = Dio();
     try {
       var response = await dio.post(
         url,
-        data: body,
+        data:body,
         options: Options(
           headers: {
             "Content-Type": "application/json",
@@ -204,12 +236,14 @@ class _loginscreenState extends State<loginscreen> {
       );
       log('${response.data}');
       log('${response.statusCode}');
-      Map map = jsonDecode(response.data);
+      Map map = response.data;
       if (map['status']) {
         Fluttertoast.showToast(
-          msg: "Sign in succesful!",
+          msg: "Sign in successful!",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.white,
+            textColor: Colors.black
         );
       //log("[i] ${jsonDecode(response.data)}");
      // Map map = jsonDecode(response.data);
