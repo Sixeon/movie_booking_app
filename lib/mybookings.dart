@@ -1,4 +1,7 @@
+import 'package:dont_book_my_show/booking%20template.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class Mybookings extends StatefulWidget {
   const Mybookings({super.key});
@@ -12,21 +15,28 @@ class _MybookingsState extends State<Mybookings> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
         body: ListView(
           children: [
+            SizedBox(height: 20,),
             Text(
               'Bookings',
+              textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color.fromARGB(100, 250, 250, 250),
+                color: Colors.white,
                 fontSize: 20,
               ),
             ),
+
             ListTile(
               onTap: () {
-                // Get.to(PersonalInfoScreen());
+
               },
               title: const Text(
-                'Personal Information',
+                'Active Bookings',
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
               trailing:
@@ -34,33 +44,16 @@ class _MybookingsState extends State<Mybookings> {
             ),
             ListTile(
               onTap: () {
-                // Get.to(Mybookings());
+                 //Get.to((TicketScreen()));
               },
               title: const Text(
-                'Mybookings',
+                'Past Bookings',
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
               trailing:
                   const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
             ),
-            const Text(
-              'Past Bookings',
-              style: TextStyle(
-                color: Color.fromARGB(100, 250, 250, 250),
-                fontSize: 20,
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                // Get.to(() => FAQScreen());
-              },
-              title: const Text(
-                'FAQ',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-              trailing:
-                  const Icon(Icons.arrow_forward, size: 20, color: Colors.white),
-            ),
+
           ],
         ),
       ),

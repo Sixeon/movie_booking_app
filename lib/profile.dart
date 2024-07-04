@@ -1,15 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dont_book_my_show/homescreen.dart';
 import 'package:dont_book_my_show/mybookings.dart';
 import 'package:dont_book_my_show/personalinfo.dart';
-import 'package:dont_book_my_show/registration.dart';
-import 'package:dont_book_my_show/screens/FAQ_help.dart';
-import 'package:dont_book_my_show/screens/booking%20template.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'login.dart';
 
 class Profile extends StatefulWidget {
@@ -21,6 +20,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   String? email;
+  File? _imageFile;
 
   @override
   void initState() {
@@ -35,14 +35,12 @@ class _ProfileState extends State<Profile> {
       var response = await dio.get(url);
 
       if (response.statusCode == 200) {
-        // Assuming the response data is a JSON string
         if (response.data is String) {
           Map<String, dynamic> data = (response.data);
           setState(() {
             email = data['email'];
           });
         } else if (response.data is Map<String, dynamic>) {
-          // If the response data is already a JSON object
           setState(() {
             email = response.data['email'];
           });
@@ -52,6 +50,15 @@ class _ProfileState extends State<Profile> {
       }
     } catch (e) {
       log('[e] error $e');
+    }
+  }
+
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
     }
   }
 
@@ -74,16 +81,16 @@ class _ProfileState extends State<Profile> {
               const SizedBox(height: 30),
               Align(
                 alignment: Alignment.topCenter,
-                child: InteractiveViewer(
-                  boundaryMargin: EdgeInsets.all(20.0),
-                  minScale: 0.5,
-                  maxScale: 3.0,
+                child: GestureDetector(
+                  onTap: _pickImage,
                   child: CircleAvatar(
                     radius: 80,
                     backgroundColor: Colors.orange,
                     child: CircleAvatar(
                       radius: 75,
-                      backgroundImage: AssetImage('assets/batman.jpeg'),
+                      backgroundImage: _imageFile != null
+                          ? FileImage(_imageFile!)
+                          : AssetImage('assets/batman.jpeg') as ImageProvider,
                     ),
                   ),
                 ),
@@ -242,7 +249,6 @@ class _FAQScreenState extends State<FAQScreen> {
                   ),
                 ],
               ),
-              // Add more FAQ questions and answers here
             ],
           ),
         ),
@@ -292,7 +298,6 @@ class _HelpScreenState extends State<HelpScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),
-              // Add more help information here
             ],
           ),
         ),
@@ -350,7 +355,6 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),
-              // Add more contact information here
             ],
           ),
         ),

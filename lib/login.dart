@@ -39,27 +39,7 @@ class _loginscreenState extends State<loginscreen> {
         children: [
           Container(
 
-
           ),
-          // Container(
-          //   decoration: BoxDecoration(
-          //
-          //       gradient: LinearGradient(colors: [
-          //     Colors.black,
-          //     Colors.black.withOpacity(0.8),
-          //     Colors.black.withOpacity(0.15),
-          //     Colors.black.withOpacity(0.5),
-          //   ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
-          // ),
-          // Expanded(child: ListView.builder(
-          //   itemCount: numbers.length, // Replace 10 with the length of your data list
-          //   itemBuilder: (context, index) {
-          //     // Replace this with the widget you want to use for each item
-          //     return ListTile(
-          //       title: Text('Item number $index'),
-          //     );
-          //   },
-          // ),),
           Align(
             alignment: Alignment.center,
             child: Column(
@@ -155,14 +135,13 @@ class _loginscreenState extends State<loginscreen> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
+                        WidgetStateProperty.all<Color>(Colors.blue),
                   ),
                   onPressed: () {
-
                     Get.to(HomePage1());
-                      // login(
-                      //  emailController.text.trim(),
-                      //     passwordController.text.trim());
+                      login(
+                      emailController.text.trim(),
+                         passwordController.text.trim());
                   },
                   child: const Text('Sign in',
                       style: TextStyle(
@@ -217,7 +196,7 @@ class _loginscreenState extends State<loginscreen> {
   }
 
   void login(String email,String password ) async {
-    String url = "http://10.10.10.136/api/login";
+    String url = "http://10.10.10.139/api/login";
     var body = {
       'email':email,
       'password':password,
@@ -247,10 +226,7 @@ class _loginscreenState extends State<loginscreen> {
         );
       //log("[i] ${jsonDecode(response.data)}");
      // Map map = jsonDecode(response.data);
-
         Get.to(() => HomePage1());
-        // Handle the successful response here
-        // e.g., navigate to another screen or show a success message.
       } else {
         Fluttertoast.showToast(
           msg: "Can't Sign in",

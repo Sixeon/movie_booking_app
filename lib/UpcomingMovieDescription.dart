@@ -7,16 +7,16 @@ import 'book_now.dart';
 import 'bottomlist.dart';
 
 
-class MovieInfoDescription extends StatefulWidget {
+class UpcomingMovieDescription extends StatefulWidget {
   final Map movieData;
 
-  MovieInfoDescription({Key? key, required this.movieData}) : super(key: key);
+  UpcomingMovieDescription({Key? key, required this.movieData}) : super(key: key);
 
   @override
-  State<MovieInfoDescription> createState() => _MovieInfoDescriptionState();
+  State<UpcomingMovieDescription> createState() => _UpcomingMoviedescription();
 }
 
-class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
+class _UpcomingMoviedescription extends State<UpcomingMovieDescription> {
   void _launchURL(String url, [ytlink]) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -107,7 +107,16 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 1),
+                    const SizedBox(height: 5),
+                    Text(
+                      widget.movieData['releaseDate'].toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 5),
                     Row(
                       children: [
                         Text(
@@ -119,25 +128,6 @@ class _MovieInfoDescriptionState extends State<MovieInfoDescription> {
                           ),
                         ),
                         const Spacer(),
-                        ElevatedButton(
-                          onPressed: () {
-                            showModalBottomSheet<void>(
-                              context: context,
-                              builder: (context) => TimeSelectionSheet(
-                                movieData: widget.movieData,
-                              ),
-                            );
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all(
-                                  Colors.amber)),
-                          child: const Text(
-                            'BOOK NOW',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )
                       ],
                     ),
                     const SizedBox(height: 5),

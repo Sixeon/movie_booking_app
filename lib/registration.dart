@@ -32,7 +32,7 @@ class _myRegisterState extends State<myRegister> {
     String confirmPassword,
 
   ) async {
-    String url = "http://10.10.10.136/api/users";
+    String url = "http://10.10.10.139/api/users";
     var body = {
       'name': name,
       'email': email,
@@ -123,7 +123,7 @@ class _myRegisterState extends State<myRegister> {
                       SizedBox(height: 30),
                       TextField(
                         controller: nameController,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -137,10 +137,14 @@ class _myRegisterState extends State<myRegister> {
                               color: Colors.white,
                             ),
                           ),
+                          fillColor: Color(0xffD8D8DD),
+                          filled: true,
                           hintText: "Name",
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(color: Colors.black),
                           labelText: 'Name',
-                          labelStyle: TextStyle(color: Colors.white),
+                          prefixIcon:
+                          IconButton(onPressed: (){},icon: Icon(Icons.people),),
+                          labelStyle: TextStyle(color: Colors.black),
                         ),
                       ),
                       SizedBox(
@@ -148,7 +152,7 @@ class _myRegisterState extends State<myRegister> {
                       ),
                       TextField(
                         controller: emailController,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -162,16 +166,21 @@ class _myRegisterState extends State<myRegister> {
                               color: Colors.white,
                             ),
                           ),
+                          fillColor: Color(0xffD8D8DD),
+                          filled: true,
                           hintText: "E-mail",
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(color: Colors.black),
                           labelText: 'E-mail',
-                          labelStyle: TextStyle(color: Colors.white),
+                          prefixIcon:
+                          IconButton(onPressed: () {}, icon: const Icon(Icons.email_rounded)),
+                          labelStyle: TextStyle(color: Colors.black),
                         ),
+
                       ),
                       SizedBox(height: 20),
                       TextField(
                         controller: mobileController,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -185,64 +194,21 @@ class _myRegisterState extends State<myRegister> {
                               color: Colors.white,
                             ),
                           ),
+                          fillColor: Color(0xffD8D8DD),
+                          filled: true,
                           hintText: "Mobile",
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(color: Colors.black),
                           labelText: 'Mobile',
-                          labelStyle: TextStyle(color: Colors.white),
+                          prefixIcon:
+                          IconButton(onPressed: () {}, icon: const Icon(Icons.phone_android)),
+                          labelStyle: TextStyle(color: Colors.black),
                         ),
                       ),
-                      // SizedBox(height: 20),
-                      // TextField(
-                      //   controller: mobileController,
-                      //   keyboardType: TextInputType.phone,
-                      //   style: TextStyle(color: Colors.white),
-                      //   decoration: InputDecoration(
-                      //     enabledBorder: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       borderSide: BorderSide(
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //     focusedBorder: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       borderSide: BorderSide(
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //     hintText: "Mobile",
-                      //     hintStyle: TextStyle(color: Colors.white),
-                      //     labelText: 'Mobile',
-                      //     labelStyle: TextStyle(color: Colors.white),
-                      //   ),
-                      // ),
-                      // SizedBox(height: 20),
-                      // TextField(
-                      //   controller: addressController,
-                      //   keyboardType: TextInputType.emailAddress,
-                      //   style: TextStyle(color: Colors.white),
-                      //   decoration: InputDecoration(
-                      //     enabledBorder: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       borderSide: BorderSide(
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //     focusedBorder: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //       borderSide: BorderSide(
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //     hintText: "address",
-                      //     hintStyle: TextStyle(color: Colors.white),
-                      //     labelText: 'Address',
-                      //     labelStyle: TextStyle(color: Colors.white),
-                      //   ),
-                      // ),
+
                       SizedBox(height: 20),
                       TextField(
                         controller: passController,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                         obscureText: _passwordVisible,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -257,10 +223,14 @@ class _myRegisterState extends State<myRegister> {
                               color: Colors.white,
                             ),
                           ),
+                          fillColor: Color(0xffD8D8DD),
+                          filled: true,
                           hintText: "Password",
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(color: Colors.black),
                           labelText: 'Password',
-                          labelStyle: TextStyle(color: Colors.white),
+                          prefixIcon:
+                          IconButton(onPressed: (){}, icon:const Icon(Icons.password)),
+                          labelStyle: TextStyle(color: Colors.black),
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -270,14 +240,14 @@ class _myRegisterState extends State<myRegister> {
                             icon: Icon(!_passwordVisible
                                 ? Icons.visibility_off
                                 : Icons.visibility),
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ),
                       SizedBox(height: 20),
                       TextField(
                         controller: confirmPassController,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                         obscureText: true,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -292,10 +262,25 @@ class _myRegisterState extends State<myRegister> {
                               color: Colors.white,
                             ),
                           ),
+                          fillColor: Color(0xffD8D8DD),
+                          filled: true,
                           hintText: "Confirm Password",
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(color: Colors.black),
                           labelText: 'Confirm Password',
-                          labelStyle: TextStyle(color: Colors.white),
+                          prefixIcon:
+                          IconButton(onPressed: (){},icon: Icon(Icons.password)),
+                          labelStyle: TextStyle(color: Colors.black),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                            icon: Icon(!_passwordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                            color: Colors.black,
+                          ),
 
                         ),
                       ),
@@ -306,7 +291,7 @@ class _myRegisterState extends State<myRegister> {
                           ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all<Color>(Colors.blue),
+                                  WidgetStateProperty.all<Color>(Colors.blue),
                             ),
                             onPressed: () {
                               Navigator.push(

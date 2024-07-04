@@ -7,6 +7,17 @@ import 'package:screenshot/screenshot.dart';
 import 'package:path_provider/path_provider.dart';
 
 class TicketScreen extends StatefulWidget {
+  final DateTime selectedDate;
+  final String selectedTime;
+  final String selectedScreen;
+  final List<bool> selectedSeats;
+final Map movieData;
+  TicketScreen({
+  required this.selectedDate,
+  required this.selectedTime,
+  required this.selectedScreen,
+  required this.selectedSeats, required this.movieData,
+  });
   @override
   _TicketScreenState createState() => _TicketScreenState();
 }
@@ -68,8 +79,8 @@ class _TicketScreenState extends State<TicketScreen> {
         controller: screenshotController,
         child: Stack(
           children: [
-            Image.asset(
-              'assets/joker.jpeg', 
+            Image.network(
+              widget.movieData['imageUrl'].toString(),
               fit: BoxFit.cover,
               height: double.infinity,
               width: double.infinity,
@@ -80,8 +91,8 @@ class _TicketScreenState extends State<TicketScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.5),
-                    Colors.black.withOpacity(0.9),
+                    Colors.black.withOpacity(0.4),
+                    Colors.black.withOpacity(0.4),
                   ],
                 ),
               ),
@@ -122,7 +133,7 @@ class _TicketScreenState extends State<TicketScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Joker',
+                          widget.movieData['title'].toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 24,
@@ -131,7 +142,7 @@ class _TicketScreenState extends State<TicketScreen> {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          '27 JUNE • 9:00 PM',
+                          '${widget.selectedDate.day}/${widget.selectedDate.month}/${widget.selectedDate.year} • ${widget.selectedTime}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
