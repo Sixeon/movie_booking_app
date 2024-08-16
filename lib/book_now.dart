@@ -10,7 +10,8 @@ class ChooseSeatsPage extends StatefulWidget {
   ChooseSeatsPage({
     required this.selectedDate,
     required this.selectedTime,
-    required this.selectedScreen, required this.movieData,
+    required this.selectedScreen,
+    required this.movieData,
   });
 
   @override
@@ -117,7 +118,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                         return GestureDetector(
                           onTap: () {
                             setState(() {
-                              selectedSeats[index] =!selectedSeats[index];
+                              selectedSeats[index] = !selectedSeats[index];
                               totalSelectedSeats = selectedSeats
                                   .where((element) => element)
                                   .length;
@@ -155,8 +156,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                         return GestureDetector(
                           onTap: () {
                             setState(() {
-                              selectedSeats[index + 10] =
-                              !selectedSeats[index + 10];
+                              selectedSeats[index + 10] = !selectedSeats[index + 10];
                               totalSelectedSeats = selectedSeats
                                   .where((element) => element)
                                   .length;
@@ -194,8 +194,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                         return GestureDetector(
                           onTap: () {
                             setState(() {
-                              selectedSeats[index + 20] =
-                              !selectedSeats[index + 20];
+                              selectedSeats[index + 20] = !selectedSeats[index + 20];
                               totalSelectedSeats = selectedSeats
                                   .where((element) => element)
                                   .length;
@@ -234,8 +233,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedSeats[index + 30] =
-                                    !selectedSeats[index + 30];
+                                    selectedSeats[index + 30] = !selectedSeats[index + 30];
                                     totalSelectedSeats = selectedSeats
                                         .where((element) => element)
                                         .length;
@@ -272,8 +270,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedSeats[index + 34] =
-                                    !selectedSeats[index + 34];
+                                    selectedSeats[index + 34] = !selectedSeats[index + 34];
                                     totalSelectedSeats = selectedSeats
                                         .where((element) => element)
                                         .length;
@@ -311,8 +308,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedSeats[index + 38] =
-                                    !selectedSeats[index + 38];
+                                    selectedSeats[index + 38] = !selectedSeats[index + 38];
                                     totalSelectedSeats = selectedSeats
                                         .where((element) => element)
                                         .length;
@@ -349,8 +345,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedSeats[index + 42] =
-                                    !selectedSeats[index + 42];
+                                    selectedSeats[index + 42] = !selectedSeats[index + 42];
                                     totalSelectedSeats = selectedSeats
                                         .where((element) => element)
                                         .length;
@@ -387,8 +382,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedSeats[index + 46] =
-                                    !selectedSeats[index + 46];
+                                    selectedSeats[index + 46] = !selectedSeats[index + 46];
                                     totalSelectedSeats = selectedSeats
                                         .where((element) => element)
                                         .length;
@@ -426,8 +420,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedSeats[index + 50] =
-                                    !selectedSeats[index + 50];
+                                    selectedSeats[index + 50] = !selectedSeats[index + 50];
                                     totalSelectedSeats = selectedSeats
                                         .where((element) => element)
                                         .length;
@@ -464,8 +457,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedSeats[index + 54] =
-                                    !selectedSeats[index + 54];
+                                    selectedSeats[index + 54] = !selectedSeats[index + 54];
                                     totalSelectedSeats = selectedSeats
                                         .where((element) => element)
                                         .length;
@@ -506,6 +498,19 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
             ),
           ),
           const SizedBox(height: 16),
+          // Legends
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                LegendItem(color: Colors.grey[300]!, label: 'Available'),
+                LegendItem(color: Colors.red, label: 'Selected'),
+                LegendItem(color: Colors.green, label: 'Reserved'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
           // Confirm button
           ElevatedButton(
             onPressed: () {
@@ -517,7 +522,7 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
                     selectedTime: widget.selectedTime,
                     selectedScreen: _selectedScreen,
                     selectedSeats: selectedSeats,
-                      movieData: widget.movieData,
+                    movieData: widget.movieData,
                   ),
                 ),
               );
@@ -526,6 +531,31 @@ class _ChooseSeatsPageState extends State<ChooseSeatsPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class LegendItem extends StatelessWidget {
+  final Color color;
+  final String label;
+
+  const LegendItem({required this.color, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: 20,
+          height: 20,
+          color: color,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          label,
+          style: const TextStyle(color: Colors.white),
+        ),
+      ],
     );
   }
 }

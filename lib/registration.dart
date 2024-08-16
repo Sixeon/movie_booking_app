@@ -116,10 +116,12 @@ class _myRegisterState extends State<myRegister> {
                     crossAxisAlignment: CrossAxisAlignment.start,
 
                     children: [
-                       Text(
-                        'CREATE ACCOUNT',
-                        style: TextStyle(color: Colors.white, fontSize: 30,fontWeight: FontWeight.bold),
-                      ),
+                       Center(
+                         child: Text(
+                          'CREATE ACCOUNT',
+                          style: TextStyle(color: Colors.white, fontSize: 30,fontWeight: FontWeight.bold),
+                                               ),
+                       ),
                       SizedBox(height: 30),
                       TextField(
                         controller: nameController,
@@ -310,7 +312,7 @@ class _myRegisterState extends State<myRegister> {
                           ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all<Color>(Colors.blue),
+                                  WidgetStateProperty.all<Color>(Colors.blue),
                             ),
                             onPressed: () {
                               // Validate input fields

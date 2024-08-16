@@ -11,12 +11,13 @@ class TicketScreen extends StatefulWidget {
   final String selectedTime;
   final String selectedScreen;
   final List<bool> selectedSeats;
-final Map movieData;
+  final Map movieData;
   TicketScreen({
-  required this.selectedDate,
-  required this.selectedTime,
-  required this.selectedScreen,
-  required this.selectedSeats, required this.movieData,
+    required this.selectedDate,
+    required this.selectedTime,
+    required this.selectedScreen,
+    required this.selectedSeats,
+    required this.movieData,
   });
   @override
   _TicketScreenState createState() => _TicketScreenState();
@@ -54,8 +55,6 @@ class _TicketScreenState extends State<TicketScreen> {
 
                 await localImageFile.writeAsBytes(imageBytes);
 
-
-                // Show a toast or message indicating successful save
                 Fluttertoast.showToast(
                   msg: "Screenshot saved to $imagePath",
                   toastLength: Toast.LENGTH_LONG,
@@ -91,8 +90,8 @@ class _TicketScreenState extends State<TicketScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.4),
-                    Colors.black.withOpacity(0.4),
+                    Colors.black.withOpacity(0.2),
+                    Colors.black.withOpacity(0.2),
                   ],
                 ),
               ),
@@ -110,7 +109,6 @@ class _TicketScreenState extends State<TicketScreen> {
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
-
                   SizedBox(height: 280),
                   Text(
                     'You may use the code below for\nentrance. We have also emailed you\na copy of your tickets.',
@@ -154,8 +152,7 @@ class _TicketScreenState extends State<TicketScreen> {
                           data: _barcodeData,
                           width: 320,
                           height: 100,
-                          style:
-                          TextStyle(fontSize: 16, color: Colors.white),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ],
                     ),

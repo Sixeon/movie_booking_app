@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class PersonalInfoScreen extends StatefulWidget {
   @override
@@ -11,11 +13,13 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  TextEditingController _messageController=TextEditingController();
 
+  var channel= WebSocketChannel.connect(Uri.parse("ws://echo.websocket.org/"));
   @override
   void initState() {
     super.initState();
-    // Set initial values (you can load these from a database or API)
+
     nameController.text = "John Doe";
     emailController.text = "johndoe@example.com";
     phoneController.text = "123-456-7890";
@@ -33,7 +37,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
-        color: Colors.black, // Set background color to black
+        color: Colors.black,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -50,10 +54,32 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
             SizedBox(height: 10),
             _buildTextField(label: 'Address', controller: addressController),
             SizedBox(height: 20),
+            TextFormField(controller: _messageController,
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+
+              labelText: 'name'
+
+            ),),
+            StreamBuilder(stream: channel.stream,
+                builder: (context,snapshot) {
+              if(snapshot.hasError){
+                return Text('Error: ${snapshot.error}',style: TextStyle(color: Colors.white),);
+              }
+              if(snapshot.hasData){
+                return Text('Recieved:${snapshot.data}',style: TextStyle(color: Colors.white));
+              }
+              return const CircularProgressIndicator();
+                }),
+            FloatingActionButton(
+              backgroundColor: Colors.white,
+                onPressed: (){
+              channel.sink.add(_messageController.text);
+            },
+              child: Icon(Icons.add)),
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle save action (e.g., save to database or API)
                   Get.snackbar(
                     'Success',
                     'Personal information updated successfully',
@@ -73,12 +99,46 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
   Widget _buildTextField({required String label, required TextEditingController controller}) {
     return TextField(
       controller: controller,
-      style: TextStyle(color: Colors.white), // Set text color to white
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.white), // Set label text color to white
+        labelStyle: TextStyle(color: Colors.white),
         border: OutlineInputBorder(),
       ),
     );
   }
 }
+
+
+
+// GestureDetector(
+//     onTap: () async {
+//       DateTimeRange? result = await showDateRangePicker(
+//           context: context,
+//           firstDate: DateTime(2021),
+//           lastDate: DateTime(2101));
+//       currentDate:
+//       DateTime.now();
+//       saveText:
+//       'Done';
+//
+//       if (result != null) {
+//         startdate = result.start.millisecondsSinceEpoch * 1000;
+//         enddate = result.end.millisecondsSinceEpoch * 1000;
+//         tran.clear();
+//         setState(() {
+//           _dateRange = result;
+//           transaction();
+//         });
+//       } else {
+//         Toaster.e(context, message: 'DateRange is not selected');
+//       }
+//     },
+//     child: const Padding(
+//       padding: EdgeInsets.all(8.0),
+//       child: Icon(
+//         Icons.date_range,
+//         color: Colors.white,
+//         size: 26,
+//       ),
+//     ))

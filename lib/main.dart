@@ -11,15 +11,13 @@ void main() {
 }
 void kal() async {
     final dio = Dio();
-    final response = await dio.get('https://dummyapi.online/api/movies');
+    final response = await dio.get('');
     print(response.data);
   }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     bool isDark = false;
@@ -33,7 +31,7 @@ class MyApp extends StatelessWidget {
 
         useMaterial3: true,
       ),
-      home: loginscreen(),
+      home: HomePage1(),
       debugShowCheckedModeBanner: false,
     );
   }
